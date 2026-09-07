@@ -392,12 +392,14 @@
   .mockup-card-sm { height: 36px; background: var(--c-tag-bg); border-radius: var(--radius-sm); }
 
   /* project color accents */
-  .p-esop   .project-visual { background: linear-gradient(135deg, #EDF2FF 0%, #E8ECFF 100%); }
-  .p-upi    .project-visual { background: linear-gradient(135deg, #FFF4ED 0%, #FFE8D9 100%); }
-  .p-school .project-visual { background: linear-gradient(135deg, #EFFAF5 0%, #DCFAED 100%); }
-  [data-theme="dark"] .p-esop   .project-visual { background: linear-gradient(135deg, #1a2040 0%, #1e2660 100%); }
-  [data-theme="dark"] .p-upi    .project-visual { background: linear-gradient(135deg, #2a1a10 0%, #3a2010 100%); }
-  [data-theme="dark"] .p-school .project-visual { background: linear-gradient(135deg, #102018 0%, #152e20 100%); }
+  .p-clinico  .project-visual { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+  .p-upi      .project-visual { background: linear-gradient(135deg, #FFF4ED 0%, #FFE8D9 100%); }
+  .p-school   .project-visual { background: linear-gradient(135deg, #EFFAF5 0%, #dcfce7 100%); }
+  .p-aidesign .project-visual { background: linear-gradient(135deg, #0f1115 0%, #141720 100%); }
+  [data-theme="dark"] .p-clinico  .project-visual { background: linear-gradient(135deg, #071810 0%, #0c2518 100%); }
+  [data-theme="dark"] .p-upi      .project-visual { background: linear-gradient(135deg, #2a1a10 0%, #3a2010 100%); }
+  [data-theme="dark"] .p-school   .project-visual { background: linear-gradient(135deg, #102018 0%, #152e20 100%); }
+  [data-theme="dark"] .p-aidesign .project-visual { background: linear-gradient(135deg, #0a0c0f 0%, #0f1115 100%); }
 
   /* ============================================================
      CASE STUDY MODAL / PAGE TEMPLATE
@@ -472,15 +474,78 @@
   .persona-name { font-weight: 600; margin-bottom: 0.25rem; }
   .persona-role { font-size: 0.8rem; color: var(--c-muted); margin-bottom: 0.75rem; }
   .persona-pain { font-size: 0.85rem; color: var(--c-muted); font-style: italic; }
-  .wireframe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
+  .wireframe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; }
   .wireframe-ph {
-    aspect-ratio: 3/4;
-    background: var(--c-tag-bg); border: 1px dashed var(--c-border);
-    border-radius: var(--radius-md);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.5rem; color: var(--c-muted);
-  }
-  .wireframe-ph span { font-size: 0.75rem; text-align: center; padding: 0 0.5rem; }
+  aspect-ratio: 3 / 4;
+
+  /* Background */
+  background: #18181b;
+
+  /* Border */
+  border: 1px dashed #3f3f46;
+
+  /* Rounded corners */
+  border-radius: 16px;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  /* Text color */
+  color: #ffffff;
+
+  /* Font */
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  /* Animation */
+  transition: all 0.3s ease;
+}
+  .wireframe-ph span {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #a1a1aa;
+  text-align: center;
+  padding: 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+  .wireframe-ph:hover {
+  background: #222225;
+  border-color: #71717a;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+.wireframe1-ph {
+  background: var(--c-tag-bg);
+  border: 1px dashed var(--c-border);
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.wireframe1-ph img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.wireframe1-ph span {
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--c-text);
+  text-align: left;
+}
   .results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1rem; }
   .result-card {
     background: var(--c-surface); border: 1px solid var(--c-border);
@@ -723,10 +788,11 @@
     <div class="about-grid">
       <div class="reveal">
         <div class="about-portrait">
-          <div class="portrait-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span>Your photo here<br><span style="font-size:0.7rem;opacity:0.6;">(Replace with your portrait)</span></span>
-          </div>
+          <img 
+           src="profileimage.png" 
+           alt="Bala - UX/UI Designer"
+           class="about-photo"
+          >
           <div class="about-portrait-badge">
             <span class="badge-icon">🎯</span>
             <div class="badge-text">
@@ -773,45 +839,45 @@
         <p class="t-label section-label">02 — Featured Work</p>
         <h2 class="t-h1">Case studies that<br>speak for themselves.</h2>
       </div>
-      <a href="#projects" class="section-header-link">View all projects →</a>
     </div>
 
     <div class="projects-list">
 
-      <!-- PROJECT 1: ESOP Dashboard -->
-      <div class="project-card p-esop reveal" onclick="openModal('esop')">
+      <!-- PROJECT 1: Clinico AI -->
+      <div class="project-card p-clinico reveal" onclick="openModal('clinico')">
         <div class="project-inner">
           <div class="project-info">
             <div>
               <div class="project-meta">
-                <span class="tag">Data Dashboard</span>
-                <span class="tag">Fintech</span>
-                <span class="tag">B2B SaaS</span>
+                <span class="tag">Healthcare AI</span>
+                <span class="tag">SaaS</span>
+                <span class="tag">AI UX</span>
+                <span class="tag">Dual-User System</span>
               </div>
-              <h3 class="t-h2 project-title">ESOP Dashboard</h3>
+              <h3 class="t-h2 project-title">Clinico AI — Intelligent Care Copilot</h3>
               <p class="project-problem">
-                Employees and HR teams struggled to understand complex equity data — vesting schedules, grant history, and tax implications were buried in spreadsheets and disconnected tools.
+                A continuous intelligence layer built between patients and doctors — designed to prevent the silent failures that happen <em>between</em> appointments. Clinicians managing 80+ patients needed AI that surfaces only what matters, not everything.
               </p>
               <div class="project-process">
                 <span class="process-step">Research</span>
-                <span class="process-step">Wireframes</span>
-                <span class="process-step">UI Design</span>
-                <span class="process-step">Testing</span>
+                <span class="process-step">Dual-User Mapping</span>
+                <span class="process-step">AI Interaction Design</span>
+                <span class="process-step">Clinical Validation</span>
               </div>
             </div>
             <div>
               <div class="project-outcome">
                 <div class="outcome-stat">
-                  <div class="num">40%</div>
-                  <div class="desc">Faster data comprehension</div>
+                  <div class="num">11<span style="font-size:1rem;">min</span></div>
+                  <div class="desc">Avg review time saved/patient</div>
                 </div>
                 <div class="outcome-stat">
-                  <div class="num">65%</div>
-                  <div class="desc">Fewer support tickets</div>
+                  <div class="num">78%</div>
+                  <div class="desc">Alert accuracy rate</div>
                 </div>
                 <div class="outcome-stat">
-                  <div class="num">4.7★</div>
-                  <div class="desc">Avg user satisfaction</div>
+                  <div class="num">91%</div>
+                  <div class="desc">Patient plan adherence</div>
                 </div>
               </div>
               <button class="project-link-btn">View Case Study →</button>
@@ -824,24 +890,38 @@
                   <div class="mockup-dot" style="background:#FF5F57;"></div>
                   <div class="mockup-dot" style="background:#FFBD2E;"></div>
                   <div class="mockup-dot" style="background:#28CA42;"></div>
+                  <span style="margin-left:8px;font-size:9px;color:#9BA4B8;font-family:monospace;">clinico.ai — Patient Dashboard</span>
                 </div>
                 <div class="mockup-content">
-                  <div class="mockup-row w-60" style="background:#c7d2fe;"></div>
-                  <div class="mockup-chart">
-                    <div class="mockup-chart-bars">
-                      <div class="chart-bar" style="height:45%;background:#818cf8;"></div>
-                      <div class="chart-bar" style="height:70%;background:#6366f1;"></div>
-                      <div class="chart-bar" style="height:55%;background:#818cf8;"></div>
-                      <div class="chart-bar" style="height:90%;background:#4f46e5;"></div>
-                      <div class="chart-bar" style="height:65%;background:#818cf8;"></div>
-                      <div class="chart-bar" style="height:80%;background:#6366f1;"></div>
+                  <!-- AI alert row -->
+                  <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#fff5f5;border:1px solid #fecdd3;border-radius:5px;margin-bottom:8px;">
+                    <span style="font-size:10px;">🔴</span>
+                    <div style="flex:1;">
+                      <div style="height:5px;background:#fca5a5;border-radius:3px;width:85%;margin-bottom:3px;"></div>
+                      <div style="height:4px;background:#fee2e2;border-radius:3px;width:55%;"></div>
+                    </div>
+                    <div style="width:28px;height:14px;background:#ef4444;border-radius:3px;"></div>
+                  </div>
+                  <!-- Patient list mock -->
+                  <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:5px;margin-bottom:6px;">
+                    <div style="width:20px;height:20px;border-radius:50%;background:#4ade80;flex-shrink:0;"></div>
+                    <div style="flex:1;">
+                      <div style="height:4px;background:#86efac;border-radius:3px;width:60%;margin-bottom:3px;"></div>
+                      <div style="height:3px;background:#dcfce7;border-radius:3px;width:40%;"></div>
                     </div>
                   </div>
-                  <div class="mockup-grid">
-                    <div class="mockup-card-sm" style="background:#EEF2FF;"></div>
-                    <div class="mockup-card-sm" style="background:#EEF2FF;"></div>
-                    <div class="mockup-card-sm" style="background:#EEF2FF;"></div>
-                    <div class="mockup-card-sm" style="background:#EEF2FF;"></div>
+                  <!-- AI confidence bar -->
+                  <div style="background:#0f1115;border-radius:5px;padding:7px 8px;margin-top:6px;">
+                    <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
+                      <div style="width:6px;height:6px;border-radius:50%;background:#4DFFA0;"></div>
+                      <div style="height:4px;background:#4DFFA0;border-radius:2px;width:50%;opacity:0.7;"></div>
+                    </div>
+                    <div style="height:3px;background:#1a1e27;border-radius:2px;width:100%;margin-bottom:3px;"></div>
+                    <div style="height:3px;background:#4DFFA0;border-radius:2px;width:78%;"></div>
+                  </div>
+                  <div class="mockup-grid" style="margin-top:6px;">
+                    <div class="mockup-card-sm" style="background:#f0fdf4;"></div>
+                    <div class="mockup-card-sm" style="background:#fef3c7;"></div>
                   </div>
                 </div>
               </div>
@@ -850,25 +930,26 @@
         </div>
       </div>
 
-      <!-- PROJECT 2: UPI ATM -->
-      <div class="project-card p-upi reveal" onclick="openModal('upi')">
+      <!-- PROJECT 2: QuickCash / UPI ATM -->
+      <div class="project-card p-upi reveal" onclick="openModal('quickcash')">
         <div class="project-inner">
           <div class="project-info">
             <div>
               <div class="project-meta">
                 <span class="tag">Fintech UX</span>
                 <span class="tag">Mobile</span>
-                <span class="tag">UX Research</span>
+                <span class="tag">Interaction Design</span>
+                <span class="tag">Live Prototype</span>
               </div>
-              <h3 class="t-h2 project-title">UPI ATM — Cardless Cash</h3>
+              <h3 class="t-h2 project-title">QuickCash — Cardless ATM</h3>
               <p class="project-problem">
-                Millions of users couldn't withdraw cash due to forgotten debit cards. UPI infrastructure existed but there was no intuitive end-to-end mobile experience bridging the gap between app and ATM.
+                Traditional ATM withdrawal assumes a physical debit card. QuickCash removes that dependency entirely — connecting a user's phone, a nearby ATM, and a secure UPI payment flow into a sub-30-second experience.
               </p>
               <div class="project-process">
                 <span class="process-step">Discovery</span>
-                <span class="process-step">User Research</span>
-                <span class="process-step">Interaction Design</span>
-                <span class="process-step">Validation</span>
+                <span class="process-step">Flow Design</span>
+                <span class="process-step">UI + Interaction</span>
+                <span class="process-step">Prototype</span>
               </div>
             </div>
             <div>
@@ -882,26 +963,45 @@
                   <div class="desc">Error reduction</div>
                 </div>
                 <div class="outcome-stat">
-                  <div class="num">22s</div>
-                  <div class="desc">Avg time-to-cash</div>
+                  <div class="num">&lt;30s</div>
+                  <div class="desc">End-to-end flow</div>
                 </div>
               </div>
               <button class="project-link-btn">View Case Study →</button>
             </div>
           </div>
           <div class="project-visual">
-            <div class="project-visual-inner" style="justify-content:center;gap:1rem;flex-direction:row;">
-              <div class="mockup-screen" style="max-width:150px;transform:perspective(600px) rotateY(4deg);">
+            <div class="project-visual-inner" style="justify-content:center;gap:0.75rem;">
+              <!-- Two phone mocks side by side -->
+              <div class="mockup-screen" style="max-width:130px;transform:perspective(600px) rotateY(5deg);">
                 <div class="mockup-bar">
                   <div class="mockup-dot" style="background:#FF5F57;"></div>
                   <div class="mockup-dot" style="background:#FFBD2E;"></div>
                   <div class="mockup-dot" style="background:#28CA42;"></div>
                 </div>
-                <div class="mockup-content">
-                  <div style="width:48px;height:48px;background:#FED7AA;border-radius:50%;margin:0 auto 0.75rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem;">₹</div>
-                  <div class="mockup-row" style="margin:0 auto 6px;width:80%;"></div>
-                  <div class="mockup-row w-60" style="margin:0 auto 12px;"></div>
-                  <div style="height:28px;background:#E8521A;border-radius:100px;margin-top:4px;"></div>
+                <div class="mockup-content" style="text-align:center;">
+                  <div style="width:40px;height:40px;background:#FED7AA;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📍</div>
+                  <div class="mockup-row" style="margin:0 auto 4px;width:80%;"></div>
+                  <div class="mockup-row w-60" style="margin:0 auto 8px;"></div>
+                  <div style="height:5px;background:#fdba74;border-radius:3px;margin-bottom:3px;width:90%;"></div>
+                  <div style="height:5px;background:#fed7aa;border-radius:3px;width:65%;"></div>
+                </div>
+              </div>
+              <div class="mockup-screen" style="max-width:130px;transform:perspective(600px) rotateY(-5deg);">
+                <div class="mockup-bar">
+                  <div class="mockup-dot" style="background:#FF5F57;"></div>
+                  <div class="mockup-dot" style="background:#FFBD2E;"></div>
+                  <div class="mockup-dot" style="background:#28CA42;"></div>
+                </div>
+                <div class="mockup-content" style="text-align:center;">
+                  <div style="width:44px;height:44px;background:#111;border-radius:8px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">₹</div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+                    <div style="height:18px;background:#f5f5f3;border-radius:3px;"></div>
+                    <div style="height:18px;background:#f5f5f3;border-radius:3px;"></div>
+                    <div style="height:18px;background:#f5f5f3;border-radius:3px;"></div>
+                    <div style="height:18px;background:#111;border-radius:3px;"></div>
+                  </div>
+                  <div style="height:22px;background:#E8521A;border-radius:100px;"></div>
                 </div>
               </div>
             </div>
@@ -909,40 +1009,41 @@
         </div>
       </div>
 
-      <!-- PROJECT 3: Schooldex -->
-      <div class="project-card p-school reveal" onclick="openModal('school')">
+      <!-- PROJECT 3: EduPulse AI -->
+      <div class="project-card p-school reveal" onclick="openModal('edupulse')">
         <div class="project-inner">
           <div class="project-info">
             <div>
               <div class="project-meta">
-                <span class="tag">EdTech</span>
+                <span class="tag">EdTech AI</span>
                 <span class="tag">SaaS Platform</span>
-                <span class="tag">Design System</span>
+                <span class="tag">Data Dashboard</span>
+                <span class="tag">Multi-Role UX</span>
               </div>
-              <h3 class="t-h2 project-title">Schooldex — SIS + LMS Platform</h3>
+              <h3 class="t-h2 project-title">EduPulse AI — School Intelligence Platform</h3>
               <p class="project-problem">
-                Schools managed student data, attendance, grades, and learning content across 5+ disconnected tools. Teachers spent more time on admin than teaching. A unified platform was needed urgently.
+                Schools have student data but no intelligence. EduPulse AI connects student information, learning signals, and wellbeing data into one living system — so teachers and admins can act before students fall through the cracks.
               </p>
               <div class="project-process">
-                <span class="process-step">Stakeholder Interviews</span>
-                <span class="process-step">System Mapping</span>
-                <span class="process-step">Design System</span>
-                <span class="process-step">Pilot Testing</span>
+                <span class="process-step">Stakeholder Research</span>
+                <span class="process-step">System Architecture</span>
+                <span class="process-step">Multi-Role UI</span>
+                <span class="process-step">AI UX Design</span>
               </div>
             </div>
             <div>
               <div class="project-outcome">
                 <div class="outcome-stat">
-                  <div class="num">60%</div>
-                  <div class="desc">Admin time saved</div>
+                  <div class="num">3.2×</div>
+                  <div class="desc">Early intervention rate</div>
                 </div>
                 <div class="outcome-stat">
-                  <div class="num">120+</div>
-                  <div class="desc">Components built</div>
+                  <div class="num">78%</div>
+                  <div class="desc">At-risk detection accuracy</div>
                 </div>
                 <div class="outcome-stat">
-                  <div class="num">8</div>
-                  <div class="desc">School pilots launched</div>
+                  <div class="num">4.6★</div>
+                  <div class="desc">Teacher satisfaction</div>
                 </div>
               </div>
               <button class="project-link-btn">View Case Study →</button>
@@ -955,16 +1056,115 @@
                   <div class="mockup-dot" style="background:#FF5F57;"></div>
                   <div class="mockup-dot" style="background:#FFBD2E;"></div>
                   <div class="mockup-dot" style="background:#28CA42;"></div>
+                  <span style="margin-left:8px;font-size:9px;color:#5a6474;font-family:monospace;">EduPulse — Teacher Dashboard</span>
                 </div>
                 <div class="mockup-content">
-                  <div class="mockup-row w-80" style="background:#BBF7D0;"></div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0;">
-                    <div style="height:52px;background:#DCFCE7;border-radius:6px;"></div>
-                    <div style="height:52px;background:#DCFCE7;border-radius:6px;"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px;">
+                    <div style="background:#DCFCE7;border-radius:4px;padding:5px;text-align:center;">
+                      <div style="height:5px;background:#86efac;border-radius:2px;width:60%;margin:0 auto 2px;"></div>
+                      <div style="height:3px;background:#bbf7d0;border-radius:2px;width:80%;margin:0 auto;"></div>
+                    </div>
+                    <div style="background:#FEF3C7;border-radius:4px;padding:5px;">
+                      <div style="height:5px;background:#fcd34d;border-radius:2px;width:70%;margin-bottom:2px;"></div>
+                      <div style="height:3px;background:#fde68a;border-radius:2px;width:50%;"></div>
+                    </div>
+                    <div style="background:#FEE2E2;border-radius:4px;padding:5px;">
+                      <div style="height:5px;background:#fca5a5;border-radius:2px;width:45%;margin-bottom:2px;"></div>
+                      <div style="height:3px;background:#fecdd3;border-radius:2px;width:65%;"></div>
+                    </div>
                   </div>
-                  <div class="mockup-row" style="height:6px;background:#BBF7D0;margin-bottom:6px;"></div>
-                  <div class="mockup-row w-60" style="height:6px;background:#BBF7D0;"></div>
-                  <div style="height:32px;background:#22c55e;border-radius:100px;margin-top:10px;opacity:0.8;"></div>
+                  <div class="mockup-chart" style="height:60px;background:#f0fdf4;">
+                    <div class="mockup-chart-bars">
+                      <div class="chart-bar" style="height:50%;background:#4ade80;"></div>
+                      <div class="chart-bar" style="height:80%;background:#22c55e;"></div>
+                      <div class="chart-bar" style="height:65%;background:#4ade80;"></div>
+                      <div class="chart-bar" style="height:90%;background:#16a34a;"></div>
+                      <div class="chart-bar" style="height:40%;background:#86efac;"></div>
+                      <div class="chart-bar" style="height:75%;background:#22c55e;"></div>
+                    </div>
+                  </div>
+                  <div class="mockup-row w-80" style="background:#BBF7D0;margin-top:8px;"></div>
+                  <div class="mockup-row w-60" style="background:#dcfce7;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4: AI Design Systems -->
+      <div class="project-card p-aidesign reveal" onclick="openModal('aidesign')">
+        <div class="project-inner">
+          <div class="project-info">
+            <div>
+              <div class="project-meta">
+                <span class="tag">AI Interaction Design</span>
+                <span class="tag">System-Level UX</span>
+                <span class="tag">Prompt Engineering</span>
+                <span class="tag">Multi-Domain</span>
+              </div>
+              <h3 class="t-h2 project-title">Designing AI Systems — Prompt Libraries & Interaction Patterns</h3>
+              <p class="project-problem">
+                AI products succeed or fail based on interaction design, not just model capability. This system-level project examines how prompt architecture and behavior modeling determine whether AI UX works — across medical, finance, education, and wellness domains.
+              </p>
+              <div class="project-process">
+                <span class="process-step">Domain Mapping</span>
+                <span class="process-step">Prompt Architecture</span>
+                <span class="process-step">Behavior Modeling</span>
+                <span class="process-step">Pattern Library</span>
+              </div>
+            </div>
+            <div>
+              <div class="project-outcome">
+                <div class="outcome-stat">
+                  <div class="num">+34%</div>
+                  <div class="desc">Task success rate</div>
+                </div>
+                <div class="outcome-stat">
+                  <div class="num">5×</div>
+                  <div class="desc">Prompt reusability</div>
+                </div>
+                <div class="outcome-stat">
+                  <div class="num">4</div>
+                  <div class="desc">Domains covered</div>
+                </div>
+              </div>
+              <button class="project-link-btn">View Case Study →</button>
+            </div>
+          </div>
+          <div class="project-visual">
+            <div class="project-visual-inner">
+              <div class="mockup-screen">
+                <div class="mockup-bar">
+                  <div class="mockup-dot" style="background:#FF5F57;"></div>
+                  <div class="mockup-dot" style="background:#FFBD2E;"></div>
+                  <div class="mockup-dot" style="background:#28CA42;"></div>
+                  <span style="margin-left:8px;font-size:9px;color:#9BA4B8;font-family:monospace;">AI Pattern Library</span>
+                </div>
+                <div class="mockup-content" style="background:#0f1115;">
+                  <div style="display:flex;flex-direction:column;gap:5px;">
+                    <!-- Domain chips -->
+                    <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px;">
+                      <div style="padding:2px 8px;background:rgba(77,255,160,0.12);border:1px solid rgba(77,255,160,0.3);border-radius:3px;font-size:8px;color:#4DFFA0;font-family:monospace;">Medical</div>
+                      <div style="padding:2px 8px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);border-radius:3px;font-size:8px;color:#00D4FF;font-family:monospace;">Finance</div>
+                      <div style="padding:2px 8px;background:rgba(123,92,248,0.12);border:1px solid rgba(123,92,248,0.3);border-radius:3px;font-size:8px;color:#7B5CF8;font-family:monospace;">Education</div>
+                      <div style="padding:2px 8px;background:rgba(255,184,77,0.1);border:1px solid rgba(255,184,77,0.25);border-radius:3px;font-size:8px;color:#FFB84D;font-family:monospace;">Wellness</div>
+                    </div>
+                    <!-- Prompt block mock -->
+                    <div style="background:#1A1E27;border:1px solid rgba(255,255,255,0.07);border-radius:5px;padding:7px;">
+                      <div style="height:4px;background:rgba(77,255,160,0.4);border-radius:2px;width:40%;margin-bottom:4px;"></div>
+                      <div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;width:90%;margin-bottom:2px;"></div>
+                      <div style="height:3px;background:rgba(255,255,255,0.06);border-radius:2px;width:70%;"></div>
+                    </div>
+                    <!-- Confidence bar -->
+                    <div style="display:flex;align-items:center;gap:5px;margin-top:2px;">
+                      <div style="font-size:8px;color:#5F6880;font-family:monospace;white-space:nowrap;">CONFIDENCE</div>
+                      <div style="flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;">
+                        <div style="width:78%;height:100%;background:#4DFFA0;border-radius:2px;"></div>
+                      </div>
+                      <div style="font-size:8px;color:#4DFFA0;font-family:monospace;">78%</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1047,36 +1247,36 @@
         <h2 class="contact-headline">Let's build something <em>great</em> together.</h2>
         <p class="contact-sub">Open to senior UX/UI roles, contract projects, and product design consulting. I'm always happy to chat about design challenges.</p>
         <div class="contact-actions">
-          <a href="mailto:hello@yourname.com" class="btn-light">📬 Send an Email</a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn-ghost-light">LinkedIn ↗</a>
+          <a href="mailto:bala.diwa@gmail.com" class="btn-light">📬 Send an Email</a>
+          <a href="https://www.linkedin.com/in/bala-subramani-9271ab220?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="btn-ghost-light">LinkedIn ↗</a>
         </div>
       </div>
       <div class="contact-links reveal reveal-delay-1">
-        <a href="mailto:hello@yourname.com" class="contact-link-item">
+        <a href="mailto:bala.diwa@gmail.com" class="contact-link-item">
           <span class="contact-link-icon">📧</span>
           <div class="contact-link-info">
             <label>Email</label>
-            <span>hello@yourname.com</span>
+            <span>bala.diwa@gmail.com</span>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="https://linkedin.com" target="_blank" class="contact-link-item">
+        <a href="https://www.linkedin.com/in/bala-subramani-9271ab220?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="contact-link-item">
           <span class="contact-link-icon">💼</span>
           <div class="contact-link-info">
             <label>LinkedIn</label>
-            <span>linkedin.com/in/yourprofile</span>
+            <span>linkedin.com/in/bala-subramani-9271ab220</span>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="#" class="contact-link-item">
+        <a href="https://www.behance.net/balasubramani4" target="_blank" class="contact-link-item">
           <span class="contact-link-icon">🎨</span>
           <div class="contact-link-info">
-            <label>Dribbble</label>
-            <span>dribbble.com/yourprofile</span>
+            <label>Behance</label>
+            <span>behance.net/balasubramani4</span>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="#" class="contact-link-item">
+        <a href="resume.pdf" target="_blank" class="contact-link-item">
           <span class="contact-link-icon">📄</span>
           <div class="contact-link-info">
             <label>Resume</label>
@@ -1094,7 +1294,7 @@
 ══════════════════════════════════════════════ -->
 <footer>
   <div class="container">
-    <span class="footer-copy">© 2025 Priya — UX/UI Designer</span>
+    <span class="footer-copy">© 2025 Bala — UX/UI Designer</span>
     <div class="footer-links">
       <a href="#hero">Top ↑</a>
       <a href="#projects">Work</a>
@@ -1107,117 +1307,142 @@
      CASE STUDY MODALS
 ══════════════════════════════════════════════ -->
 
-<!-- ESOP Modal -->
-<div class="modal-overlay" id="modal-esop">
+<!-- CLINICO AI Modal -->
+<div class="modal-overlay" id="modal-clinico">
   <div class="modal">
-    <div class="modal-hero" style="background:linear-gradient(135deg,#EDF2FF,#C7D2FE);">
-      <button class="modal-close" onclick="closeModal('esop')">✕</button>
+    <div class="modal-hero" style="background:linear-gradient(135deg,#071810,#0c2518);">
+      <button class="modal-close" onclick="closeModal('clinico')">✕</button>
       <div>
-        <p class="t-label" style="color:#4f46e5;margin-bottom:0.5rem;">Case Study — ESOP Dashboard</p>
-        <h2 class="t-h1" style="color:#1e1b4b;">Making equity<br>understandable.</h2>
+        <p class="t-label" style="color:#4DFFA0;margin-bottom:0.5rem;">Case Study — Healthcare AI · Staff Product Designer</p>
+        <h2 class="t-h1" style="color:#f0fdf4;">Clinico AI — Intelligent<br>Care Copilot System</h2>
       </div>
     </div>
     <div class="modal-body">
       <div class="cs-section">
         <div class="cs-meta-grid">
-          <div class="cs-meta-item"><label>My Role</label><span>Lead Product Designer</span></div>
-          <div class="cs-meta-item"><label>Duration</label><span>4 months</span></div>
-          <div class="cs-meta-item"><label>Platform</label><span>Web App (B2B SaaS)</span></div>
+          <div class="cs-meta-item"><label>My Role</label><span>Staff Product Designer</span></div>
+          <div class="cs-meta-item"><label>Duration</label><span>14 months</span></div>
+          <div class="cs-meta-item"><label>Platform</label><span>Web SaaS + Mobile</span></div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Overview</h3>
-        <p>ESOP Dashboard is an equity management platform for startups and HR teams. Employees needed a clear, self-serve way to understand their stock options, vesting schedules, and tax implications — all in one place.</p>
+        <p>Clinico AI is a continuous intelligence layer between patients and doctors — built to prevent the silent failures that happen between appointments. The system surfaces the right signals to the right user at the right time, serving two fundamentally different audiences: clinicians managing caseloads and patients managing their own health.</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Problem</h3>
-        <p>HR teams were fielding hundreds of repetitive queries about equity every month. Employees couldn't understand their ESOP letters. The existing tool was a glorified spreadsheet with no contextual guidance, resulting in confusion, distrust, and low engagement.</p>
+        <p>A cardiologist managing 80 patients with real-time push alerts for every metric shift would be non-functional within a day. Patients shown raw lab values like "BNP 287, eGFR 64" without context experienced anxiety, not clarity. The challenge was designing AI that translates clinical reality into actionable signals — for both sides.</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Research Insights</h3>
         <div class="cs-insight-list">
-          <div class="cs-insight-item">68% of employees didn't know how much their options were currently worth</div>
-          <div class="cs-insight-item">HR teams spent ~6 hrs/week answering equity questions that could be self-served</div>
-          <div class="cs-insight-item">Users needed progressive disclosure — summary first, details on demand</div>
-          <div class="cs-insight-item">Mobile access was critical: employees checked equity data during appraisal periods</div>
+          <div class="cs-insight-item">Clinicians needed signal prioritisation, not raw data — alert fatigue was a critical safety issue</div>
+          <div class="cs-insight-item">Patients understood "Medication gap detected" far better than "metoprolol adherence: 34%"</div>
+          <div class="cs-insight-item">The interruption cost of a false-positive alert during surgery or a critical consultation is not zero — it's dangerous</div>
+          <div class="cs-insight-item">Trust in AI recommendations collapsed after 3–4 bad experiences with inconsistent outputs</div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">User Personas</h3>
         <div class="persona-grid">
           <div class="persona-card">
-            <div class="persona-avatar">👩‍💼</div>
-            <div class="persona-name">Shreya, 28</div>
-            <div class="persona-role">Software Engineer, 3 yrs at startup</div>
-            <div class="persona-pain">"I have no idea when my options vest or what they're worth today."</div>
+            <div class="persona-avatar">👩‍⚕️</div>
+            <div class="persona-name">Dr. Anand, 44</div>
+            <div class="persona-role">Cardiologist, 80-patient caseload</div>
+            <div class="persona-pain">"I don't need more data. I need to know which patient needs me today."</div>
           </div>
           <div class="persona-card">
-            <div class="persona-avatar">👨‍💻</div>
-            <div class="persona-role">HR Manager, handles 80+ employees</div>
-            <div class="persona-name">Arjun, 35</div>
-            <div class="persona-pain">"I waste half my day answering questions that should be in a dashboard."</div>
+            <div class="persona-avatar">🧓</div>
+            <div class="persona-name">Rajan, 62</div>
+            <div class="persona-role">Patient with chronic condition</div>
+            <div class="persona-pain">"The numbers scare me. Tell me what I should actually do."</div>
           </div>
         </div>
       </div>
       <div class="cs-section">
-        <h3 class="cs-section-title">Wireframes & Process</h3>
+        <h3 class="cs-section-title">Design Process</h3>
         <div class="wireframe-grid">
-          <div class="wireframe-ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg><span>Dashboard Overview Wireframe</span></div>
-          <div class="wireframe-ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Vesting Timeline View</span></div>
-          <div class="wireframe-ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Tax Calculator Modal</span></div>
+          <div class="wireframe-ph"><strong>01 Discover</strong>
+           <span>Understand the Healthcare Problem.</span></div>
+          <div class="wireframe-ph"><strong>02 Define</strong>
+          <span>Identify high-impact problems.</span></div>
+          <div class="wireframe-ph"><strong>03 AI Opportunity</strong>
+          <span>Find where AI can help.</span></div>
+          <div class="wireframe-ph"><strong>04 Structure</strong>
+          <span>Create clear user journeys.</span></div>
+          <div class="wireframe-ph"><strong>05 Design</strong>
+           <span>Translate ideas into interfaces.</span></div>
+          <div class="wireframe-ph"><strong>06 Prototype</strong>
+          <span>Bring interactions to life.</span></div>
+          <div class="wireframe-ph"><strong>07 Validate</strong>
+          <span>Test and iterate.</span></div>
+          <div class="wireframe-ph"><strong>08 Refine</strong>
+          <span>Balance intelligence with trust.</span></div>
         </div>
       </div>
       <div class="cs-section">
-        <h3 class="cs-section-title">Final UI</h3>
-        <div style="background:var(--c-tag-bg);border:1px dashed var(--c-border);border-radius:var(--radius-md);padding:3rem;text-align:center;color:var(--c-muted);">
-          📸 Insert final UI screens here<br><span style="font-size:0.8rem;">Recommended: 1440px desktop + 375px mobile screenshots</span>
+        <h3 class="cs-section-title">Key Design Decisions</h3>
+        <div class="cs-insight-list">
+          <div class="cs-insight-item">Clinician layer: severity-ranked alerts with AI confidence scores, not chronological feeds</div>
+          <div class="cs-insight-item">Patient layer: plain-language summaries with one clear action, not lab value dumps</div>
+          <div class="cs-insight-item">Transparency layer: AI shows its reasoning so clinicians can override with context</div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Results</h3>
         <div class="results-grid">
-          <div class="result-card"><div class="result-num">40%</div><div class="result-label">Faster data comprehension in user testing</div></div>
-          <div class="result-card"><div class="result-num">65%</div><div class="result-label">Reduction in HR support queries</div></div>
-          <div class="result-card"><div class="result-num">4.7★</div><div class="result-label">Average satisfaction score</div></div>
+          <div class="result-card"><div class="result-num">11<span style="font-size:1rem;">min</span></div><div class="result-label">Time saved per patient review</div></div>
+          <div class="result-card"><div class="result-num">78%</div><div class="result-label">Alert accuracy rate</div></div>
+          <div class="result-card"><div class="result-num">91%</div><div class="result-label">Patient plan adherence</div></div>
         </div>
+      </div>
+      <div class="cs-section" style="text-align:center;padding-top:1rem;">
+        <a href="clinico-ai-case-study.html" target="_blank" class="btn-primary" style="display:inline-flex;">Open Full Case Study ↗</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- UPI Modal -->
-<div class="modal-overlay" id="modal-upi">
+<!-- QUICKCASH Modal -->
+<div class="modal-overlay" id="modal-quickcash">
   <div class="modal">
-    <div class="modal-hero" style="background:linear-gradient(135deg,#FFF4ED,#FED7AA);">
-      <button class="modal-close" onclick="closeModal('upi')">✕</button>
+    <div class="modal-hero" style="background:linear-gradient(135deg,#111,#2a1a10);">
+      <button class="modal-close" onclick="closeModal('quickcash')">✕</button>
       <div>
-        <p class="t-label" style="color:#E8521A;margin-bottom:0.5rem;">Case Study — UPI ATM</p>
-        <h2 class="t-h1" style="color:#431407;">Cash, without the card.</h2>
+        <p class="t-label" style="color:#E8521A;margin-bottom:0.5rem;">Case Study — Fintech UX · Mobile</p>
+        <h2 class="t-h1" style="color:#fff7f0;">QuickCash —<br>Cardless cash.</h2>
       </div>
     </div>
     <div class="modal-body">
       <div class="cs-section">
         <div class="cs-meta-grid">
-          <div class="cs-meta-item"><label>My Role</label><span>UX Designer</span></div>
-          <div class="cs-meta-item"><label>Duration</label><span>6 weeks</span></div>
-          <div class="cs-meta-item"><label>Platform</label><span>Mobile App (Android + iOS)</span></div>
+          <div class="cs-meta-item"><label>My Role</label><span>UX / UI Designer</span></div>
+          <div class="cs-meta-item"><label>Focus</label><span>Product UX · Interaction · UI</span></div>
+          <div class="cs-meta-item"><label>Platform</label><span>Mobile (Android + iOS)</span></div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Overview</h3>
-        <p>UPI ATM enables cardless cash withdrawals by linking a user's UPI ID to a physical ATM interaction. This case study covers the complete flow — from initiating a withdrawal in-app to collecting cash at the ATM.</p>
+        <p>QuickCash explores a simple question: if people already use UPI on their phones every day, can getting physical cash be just as effortless? The concept connects the user's phone, a nearby ATM, and a secure UPI payment flow — intentionally broken into clear, focused steps so the user always knows what happens next.</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Problem</h3>
-        <p>Users frequently arrived at ATMs without debit cards — especially younger demographics who rely on UPI for daily transactions. Existing cardless options required bank-specific apps with cumbersome flows that had high drop-off rates.</p>
+        <p>Traditional ATM withdrawal assumes a physical debit card. QuickCash removes that dependency entirely. The design challenge: create a cardless withdrawal flow that feels familiar, secure, and fast — while bridging a digital UPI interaction with a physical ATM machine.</p>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">User Flow</h3>
+        <div class="cs-insight-list">
+          <div class="cs-insight-item">Home → ATM Locator → QR Scanner → Withdraw Amount → UPI PIN → Processing → Success / Failed → History</div>
+          <div class="cs-insight-item">Each screen represents one decision or system state — this reduces cognitive load and makes error recovery easier to design</div>
+        </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Research Insights</h3>
         <div class="cs-insight-list">
-          <div class="cs-insight-item">1 in 3 users had missed a cardless ATM opportunity due to confusing flows</div>
-          <div class="cs-insight-item">Time pressure at ATMs created anxiety — the flow needed to be under 30 seconds</div>
-          <div class="cs-insight-item">OTP-based confirmations were the most trusted security pattern</div>
+          <div class="cs-insight-item">Time pressure at ATMs creates anxiety — the entire flow needed to be completable in under 30 seconds</div>
+          <div class="cs-insight-item">OTP-based confirmations were the most trusted security pattern among users</div>
           <div class="cs-insight-item">Users expected clear session expiry feedback to avoid failed withdrawals</div>
+          <div class="cs-insight-item">Success and failure states needed to be unambiguous — money is involved, stakes are high</div>
         </div>
       </div>
       <div class="cs-section">
@@ -1230,72 +1455,75 @@
             <div class="persona-pain">"I never carry my card but I need cash sometimes — this should just work."</div>
           </div>
           <div class="persona-card">
-            <div class="persona-avatar">👩‍🔬</div>
+            <div class="persona-avatar">👩‍💼</div>
             <div class="persona-name">Meera, 38</div>
             <div class="persona-role">Professional, frequent traveller</div>
-            <div class="persona-pain">"I left my wallet at home again — I need a reliable backup."</div>
+            <div class="persona-pain">"I left my wallet at home again — I need a reliable backup fast."</div>
           </div>
         </div>
       </div>
       <div class="cs-section">
-        <h3 class="cs-section-title">Wireframes & Process</h3>
+        <h3 class="cs-section-title">Key UI Screens</h3>
         <div class="wireframe-grid">
-          <div class="wireframe-ph"><span>Initiate Flow Screen</span></div>
-          <div class="wireframe-ph"><span>ATM QR Scan State</span></div>
-          <div class="wireframe-ph"><span>OTP + Confirmation</span></div>
+          <div class="wireframe1-ph"> <img src="images/home.jpeg" alt="Home and ATM Locator"><span>Home</span></div>
+          <div class="wireframe1-ph"><img src="images/ATMlocator.jpeg" alt="Home and ATM Locator"><span>ATM Locator</span></div>
+          <div class="wireframe1-ph"><img src="images/sucess.jpeg" alt="Home and ATM Locator"><span>UPI PIN + Success / Failure</span></div>
+          <div class="wireframe1-ph"><img src="images/transactionhistory.jpeg" alt="Home and ATM Locator"><span>Transaction History</span></div>
         </div>
       </div>
       <div class="cs-section">
-        <h3 class="cs-section-title">Final UI</h3>
-        <div style="background:var(--c-tag-bg);border:1px dashed var(--c-border);border-radius:var(--radius-md);padding:3rem;text-align:center;color:var(--c-muted);">
-          📸 Insert final UI screens here<br><span style="font-size:0.8rem;">Recommended: 375px mobile mockups in device frames</span>
-        </div>
+        <h3 class="cs-section-title">Reflection</h3>
+        <p style="font-style:italic;color:var(--c-muted);font-size:1.05rem;line-height:1.7;">"The strongest part of the concept is not removing the card — it is making every transition feel intentional enough that the user trusts what is happening to their money."</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Results</h3>
         <div class="results-grid">
           <div class="result-card"><div class="result-num">3×</div><div class="result-label">Task completion rate vs. benchmark</div></div>
           <div class="result-card"><div class="result-num">78%</div><div class="result-label">Reduction in user errors</div></div>
-          <div class="result-card"><div class="result-num">22s</div><div class="result-label">Average time to initiate withdrawal</div></div>
+          <div class="result-card"><div class="result-num">&lt;30s</div><div class="result-label">End-to-end withdrawal flow</div></div>
         </div>
+      </div>
+      <div class="cs-section" style="text-align:center;padding-top:1rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="QuickCash_Case_Study.html" target="_blank" class="btn-primary" style="display:inline-flex;">Open Full Case Study ↗</a>
+        <a href="https://skilled-quick-cash-go.base44.app/" target="_blank" class="btn-secondary" style="display:inline-flex;">View Live Prototype ↗</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Schooldex Modal -->
-<div class="modal-overlay" id="modal-school">
+<!-- EDUPULSE Modal -->
+<div class="modal-overlay" id="modal-edupulse">
   <div class="modal">
-    <div class="modal-hero" style="background:linear-gradient(135deg,#EFFAF5,#BBF7D0);">
-      <button class="modal-close" onclick="closeModal('school')">✕</button>
+    <div class="modal-hero" style="background:linear-gradient(135deg,#102018,#0d2918);">
+      <button class="modal-close" onclick="closeModal('edupulse')">✕</button>
       <div>
-        <p class="t-label" style="color:#16a34a;margin-bottom:0.5rem;">Case Study — Schooldex</p>
-        <h2 class="t-h1" style="color:#14532d;">One platform for<br>every classroom need.</h2>
+        <p class="t-label" style="color:#4ade80;margin-bottom:0.5rem;">Case Study — AI EdTech · School Intelligence Platform</p>
+        <h2 class="t-h1" style="color:#f0fdf4;">EduPulse AI —<br>Schools have data.<br><em style="color:#4ade80;">They've never had intelligence.</em></h2>
       </div>
     </div>
     <div class="modal-body">
       <div class="cs-section">
         <div class="cs-meta-grid">
-          <div class="cs-meta-item"><label>My Role</label><span>Lead UX/UI + Design System</span></div>
-          <div class="cs-meta-item"><label>Duration</label><span>8 months</span></div>
-          <div class="cs-meta-item"><label>Platform</label><span>Web + Tablet (EdTech SaaS)</span></div>
+          <div class="cs-meta-item"><label>My Role</label><span>Lead UX / AI Experience Designer</span></div>
+          <div class="cs-meta-item"><label>Platform</label><span>Web SaaS + Tablet</span></div>
+          <div class="cs-meta-item"><label>Users</label><span>Teachers · Admins · Parents · Students</span></div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Overview</h3>
-        <p>Schooldex is a unified School Information System (SIS) and Learning Management System (LMS). I designed the end-to-end platform from scratch — building the design language, component library, and all major user flows for administrators, teachers, students, and parents.</p>
+        <p>EduPulse AI connects student information, learning signals, and wellbeing data into a single living system — so schools can act before students fall through the cracks. Unlike traditional SIS platforms, EduPulse surfaces intelligence, not just data.</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Problem</h3>
-        <p>Schools operated across fragmented tools — one for attendance, another for grades, a third for curriculum. This created data silos, duplication, and high cognitive load for teachers who managed up to 5 different tools per day.</p>
+        <p>Schools were drowning in data but starved of insight. A teacher and an admin have fundamentally different cognitive contexts — a unified dashboard forces uncomfortable compromises: too much detail for the admin, too little for the teacher. Role-specific surfaces let us design for actual mental models, not theoretical ones.</p>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Research Insights</h3>
         <div class="cs-insight-list">
           <div class="cs-insight-item">Teachers averaged 4.8 context switches per hour across disconnected tools</div>
-          <div class="cs-insight-item">Parents wanted real-time updates, not periodic PDF reports</div>
-          <div class="cs-insight-item">A scalable design system was critical to ship fast and stay consistent across 40+ screens</div>
-          <div class="cs-insight-item">Offline mode was essential for schools in low-connectivity regions</div>
+          <div class="cs-insight-item">At-risk students were identified weeks too late because signals were siloed across systems</div>
+          <div class="cs-insight-item">The feedback loop: teacher action feeds back into the AI model — improving future signal accuracy over time</div>
+          <div class="cs-insight-item">Wellbeing data required extreme sensitivity in UI — stigma reduction was a design requirement, not a nice-to-have</div>
         </div>
       </div>
       <div class="cs-section">
@@ -1305,37 +1533,118 @@
             <div class="persona-avatar">👩‍🏫</div>
             <div class="persona-name">Divya, 34</div>
             <div class="persona-role">Class Teacher, 120 students</div>
-            <div class="persona-pain">"I spend more time on data entry than I do on actual teaching."</div>
+            <div class="persona-pain">"I can tell something is off with a student but I have no data to act on."</div>
           </div>
           <div class="persona-card">
             <div class="persona-avatar">🧑‍💼</div>
             <div class="persona-name">Suresh, 48</div>
-            <div class="persona-role">School Principal</div>
-            <div class="persona-pain">"I can't get a clear picture of school performance without pulling 5 reports."</div>
+            <div class="persona-role">Principal / School Admin</div>
+            <div class="persona-pain">"I'm seeing outputs, not signals. I can't get ahead of problems."</div>
           </div>
         </div>
       </div>
       <div class="cs-section">
-        <h3 class="cs-section-title">Wireframes & Process</h3>
+        <h3 class="cs-section-title">Design Process</h3>
         <div class="wireframe-grid">
-          <div class="wireframe-ph"><span>Teacher Dashboard</span></div>
-          <div class="wireframe-ph"><span>Attendance Module</span></div>
-          <div class="wireframe-ph"><span>Grade Book View</span></div>
-        </div>
-      </div>
-      <div class="cs-section">
-        <h3 class="cs-section-title">Final UI</h3>
-        <div style="background:var(--c-tag-bg);border:1px dashed var(--c-border);border-radius:var(--radius-md);padding:3rem;text-align:center;color:var(--c-muted);">
-          📸 Insert final UI screens here<br><span style="font-size:0.8rem;">Recommended: 1280px web view + key component highlights</span>
+          <div class="wireframe-ph"><strong>01 Discover</strong>
+           <span>Understand the education ecosystem.</span></div>
+          <div class="wireframe-ph"><strong>02 Define</strong>
+          <span>Identify workflow friction.</span></div>
+          <div class="wireframe-ph"><strong>03 Prioritize</strong>
+          <span>Focus on meaningful AI opportunities.</span></div>
+          <div class="wireframe-ph"><strong>04 Structure</strong>
+          <span>Build the information architecture.</span></div>
+          <div class="wireframe-ph"><strong>05 Explore</strong>
+           <span>Test different interaction models.</span></div>
+          <div class="wireframe-ph"><strong>06 Design</strong>
+          <span>Create the product experience.</span></div>
+          <div class="wireframe-ph"><strong>07 Systemize</strong>
+          <span>Build scalable UI patterns.</span></div>
+          <div class="wireframe-ph"><strong>08 Iterate</strong>
+          <span>Prototype, validate, and refine.</span></div>
         </div>
       </div>
       <div class="cs-section">
         <h3 class="cs-section-title">Results</h3>
         <div class="results-grid">
-          <div class="result-card"><div class="result-num">60%</div><div class="result-label">Reduction in admin time for teachers</div></div>
-          <div class="result-card"><div class="result-num">120+</div><div class="result-label">Reusable design system components</div></div>
-          <div class="result-card"><div class="result-num">8</div><div class="result-label">Schools in pilot launch</div></div>
+          <div class="result-card"><div class="result-num">3.2×</div><div class="result-label">Early intervention rate increase</div></div>
+          <div class="result-card"><div class="result-num">78%</div><div class="result-label">At-risk student detection accuracy</div></div>
+          <div class="result-card"><div class="result-num">4.6★</div><div class="result-label">Teacher satisfaction score</div></div>
         </div>
+      </div>
+      <div class="cs-section" style="text-align:center;padding-top:1rem;">
+        <a href="eduplusecasestudy.html" target="_blank" class="btn-primary" style="display:inline-flex;">Open Full Case Study ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI DESIGN SYSTEMS Modal -->
+<div class="modal-overlay" id="modal-aidesign">
+  <div class="modal">
+    <div class="modal-hero" style="background:linear-gradient(135deg,#0a0c0f,#141720);">
+      <button class="modal-close" onclick="closeModal('aidesign')">✕</button>
+      <div>
+        <p class="t-label" style="color:#7B5CF8;margin-bottom:0.5rem;">Case Study — AI Interaction Design · System-Level UX</p>
+        <h2 class="t-h1" style="color:#E8ECF4;">Designing AI Systems —<br>Prompt Libraries &<br><em style="color:#4DFFA0;">Interaction Patterns</em></h2>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="cs-section">
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item"><label>Type</label><span>System-Level AI UX Design</span></div>
+          <div class="cs-meta-item"><label>Domains</label><span>Medical · Finance · Education · Wellness</span></div>
+          <div class="cs-meta-item"><label>Core Skill</label><span>AI Interaction · Prompt Engineering · UX Strategy</span></div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">Thesis</h3>
+        <p style="font-style:italic;font-size:1.05rem;color:var(--c-text);padding:1.25rem;background:var(--c-tag-bg);border-left:3px solid var(--c-accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;">"AI products succeed or fail based on interaction design and prompt systems — not just model capability."</p>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">Overview</h3>
+        <p>A system-level design project examining how prompt architecture, interaction patterns, and behavior modeling determine whether AI products succeed — across four high-stakes domains. The output is a reusable framework, not a single product.</p>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">Domain Patterns</h3>
+        <div class="cs-insight-list">
+          <div class="cs-insight-item"><strong>Medical:</strong> Symptom-aware · Escalation-mapped · Safety-first prompting</div>
+          <div class="cs-insight-item"><strong>Finance:</strong> Confidence-calibrated · Audit-transparent · Risk-disclosed responses</div>
+          <div class="cs-insight-item"><strong>Education:</strong> Scaffolded · Hint-first · Mastery-focused learning interactions</div>
+          <div class="cs-insight-item"><strong>Wellness:</strong> Emotion-aware · Habit-focused · Non-prescriptive support patterns</div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">Research Insights</h3>
+        <div class="cs-insight-list">
+          <div class="cs-insight-item">AI trust collapses after 3–4 bad experiences with inconsistent or wrong outputs</div>
+          <div class="cs-insight-item">Users interpret confident-sounding AI responses as factual — tone design is a safety issue</div>
+          <div class="cs-insight-item">The same prompt produces different results on different days — behavioral consistency is a UX problem</div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">The Prompt Architecture</h3>
+        <div class="wireframe-grid">
+          <div class="wireframe-ph"><strong>A. System Prompts</strong>
+           <span>Establish the AI's identity, tone, constraints, and domain specialization. Written by designers and engineers. Updated deliberately, not per-session.</span></div> 
+          <div class="wireframe-ph"><strong>B. User Prompts</strong>
+           <span>Raw natural language from the user. Highly variable in clarity, intent, and emotional state. Must be interpreted, not just forwarded.</span></div>
+          <div class="wireframe-ph"><strong>C. Context Prompts</strong>
+           <span>User history, preferences, behavioral signals, and goals. Injected by the system into each request. The primary mechanism for personalization.</span></div>
+          <div class="wireframe-ph"><strong>D. Dynamic Prompts</strong>
+           <span>Real-time modifiers that change the AI's behavior based on detected user state — fatigue, urgency, emotional distress, learning pace, or financial risk level.</span></div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <h3 class="cs-section-title">Impact</h3>
+        <div class="results-grid">
+          <div class="result-card"><div class="result-num">+34%</div><div class="result-label">Task success rate with framework</div></div>
+          <div class="result-card"><div class="result-num">5×</div><div class="result-label">Prompt reusability across domains</div></div>
+          <div class="result-card"><div class="result-num">+28%</div><div class="result-label">User trust score improvement</div></div>
+        </div>
+      </div>
+      <div class="cs-section" style="text-align:center;padding-top:1rem;">
+        <a href="AIdesign.html" target="_blank" class="btn-primary" style="display:inline-flex;">Open Full Case Study ↗</a>
       </div>
     </div>
   </div>

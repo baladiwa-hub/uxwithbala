@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduPulse AI — UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0f14;
+    --ink-2: #1c2030;
+    --ink-muted: #5a6075;
+    --ink-faint: #8a90a2;
+    --surface: #f5f4f0;
+    --surface-2: #edecea;
+    --surface-3: #e3e1dc;
+    --white: #fdfcf9;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --teal: #0d9488;
+    --teal-soft: #ccfbf1;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --rose: #e11d48;
+    --rose-soft: #ffe4e6;
+    --violet: #7c3aed;
+    --violet-soft: #ede9fe;
+    --border: rgba(13,15,20,0.08);
+    --border-strong: rgba(13,15,20,0.14);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 24px 64px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(253,252,249,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px; font-weight: 500;
+    color: var(--ink-muted); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .nav-pill {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent);
+    background: var(--accent-soft); border-radius: 100px;
+    padding: 5px 14px;
+  }
+
+  /* ─── LAYOUT ─── */
+  .section {
+    max-width: 860px; margin: 0 auto;
+    padding: 96px 32px;
+  }
+  .section-wide {
+    max-width: 1100px; margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .section-full {
+    padding: 80px 0;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 32px 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 40%, rgba(37,99,235,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 80% 60%, rgba(13,148,136,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 20%, rgba(124,58,237,0.10) 0%, transparent 50%);
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 24px;
+    position: relative;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block;
+    width: 32px; height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(44px, 7vw, 80px);
+    line-height: 1.07;
+    color: #fff;
+    max-width: 820px;
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+  }
+  .hero-sub {
+    font-size: 17px; color: rgba(255,255,255,0.55);
+    max-width: 520px; line-height: 1.6;
+    margin-bottom: 56px; position: relative;
+  }
+  .metrics-row {
+    display: flex; gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .metric {
+    flex: 1; padding: 28px 32px;
+    background: rgba(255,255,255,0.04);
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .metric:hover { background: rgba(255,255,255,0.07); }
+  .metric-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px; color: #fff;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .metric-num sup { font-size: 20px; vertical-align: super; }
+  .metric-label {
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.04em; font-weight: 500;
+  }
+
+  /* ─── HERO UI MOCKUP ─── */
+  .hero-ui {
+    margin-top: 72px;
+    position: relative;
+    width: 100%; max-width: 980px;
+  }
+  .mockup-shell {
+    background: #1a1d27;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .mockup-bar {
+    background: #141720;
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .mockup-body {
+    display: grid; grid-template-columns: 220px 1fr 280px;
+    min-height: 440px;
+  }
+  .mock-sidebar {
+    background: #141720;
+    border-right: 1px solid rgba(255,255,255,0.05);
+    padding: 20px 0;
+  }
+  .mock-nav-item {
+    padding: 10px 20px;
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mock-nav-item.active {
+    color: rgba(255,255,255,0.9);
+    background: rgba(37,99,235,0.15);
+    border-left: 2px solid #2563eb;
+  }
+  .mock-icon { font-size: 14px; }
+  .mock-main {
+    padding: 24px;
+    background: #1a1d27;
+  }
+  .mock-header {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+    margin-bottom: 16px; letter-spacing: 0.02em;
+  }
+  .mock-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 16px;
+  }
+  .mock-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .mock-card-label { font-size: 10px; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+  .mock-card-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; color: #fff;
+  }
+  .mock-card-badge {
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 100px;
+    display: inline-block; margin-top: 4px;
+  }
+  .badge-up { background: rgba(13,148,136,0.2); color: #2dd4bf; }
+  .badge-warn { background: rgba(217,119,6,0.2); color: #fbbf24; }
+  .mock-chart {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    height: 120px;
+    display: flex; align-items: flex-end; gap: 6px;
+  }
+  .bar {
+    flex: 1; border-radius: 4px 4px 0 0;
+    opacity: 0.7;
+    background: linear-gradient(to top, #2563eb, #60a5fa);
+  }
+  .bar.dim { opacity: 0.2; }
+  .bar.hi { opacity: 1; }
+  .mock-ai-panel {
+    background: #0f1117;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    padding: 20px;
+    display: flex; flex-direction: column;
+  }
+  .ai-panel-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.3);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ai-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #2dd4bf;
+    box-shadow: 0 0 8px #2dd4bf;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .ai-alert {
+    background: rgba(225,29,72,0.12);
+    border: 1px solid rgba(225,29,72,0.2);
+    border-radius: 8px; padding: 12px;
+    margin-bottom: 10px;
+  }
+  .ai-alert-label { font-size: 10px; color: #fb7185; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ai-alert-text { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .ai-msg {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px; padding: 10px 12px;
+    font-size: 11px; color: rgba(255,255,255,0.5);
+    margin-bottom: 8px; line-height: 1.5;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .ai-msg.from-student {
+    background: rgba(37,99,235,0.15);
+    color: rgba(255,255,255,0.75);
+    border-color: rgba(37,99,235,0.2);
+    margin-left: 20px;
+  }
+  .ai-input {
+    margin-top: auto;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 12px;
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* ─── SECTION LABELS ─── */
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; display: block; height: 1px;
+    flex: 1; background: var(--accent-soft);
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.15; color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h2 em { font-style: italic; color: var(--ink-muted); }
+  h3 {
+    font-size: 18px; font-weight: 600;
+    color: var(--ink); margin-bottom: 12px;
+  }
+  p { color: var(--ink-muted); margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── DIVIDERS ─── */
+  .divider {
+    max-width: 860px; margin: 0 auto;
+    border: none; border-top: 1px solid var(--border);
+  }
+  .section-bg {
+    background: var(--surface);
+  }
+  .section-bg-dark {
+    background: var(--ink);
+    color: #fff;
+  }
+  .section-bg-dark p { color: rgba(255,255,255,0.5); }
+  .section-bg-dark h2 { color: #fff; }
+  .section-bg-dark h2 em { color: rgba(255,255,255,0.35); }
+  .section-bg-dark h3 { color: rgba(255,255,255,0.85); }
+  .section-bg-dark strong { color: #fff; }
+  .section-bg-dark .section-label { color: #60a5fa; }
+  .section-bg-dark .section-label::after { background: rgba(96,165,250,0.15); }
+
+  /* ─── PROBLEM PILLARS ─── */
+  .pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 40px;
+  }
+  .pillar {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .pillar-1::before { background: linear-gradient(90deg, var(--rose), transparent); }
+  .pillar-2::before { background: linear-gradient(90deg, var(--amber), transparent); }
+  .pillar-3::before { background: linear-gradient(90deg, var(--violet), transparent); }
+  .pillar-4::before { background: linear-gradient(90deg, var(--teal), transparent); }
+  .pillar-icon {
+    font-size: 24px; margin-bottom: 14px;
+    display: block;
+  }
+  .pillar h3 { font-size: 16px; margin-bottom: 8px; }
+  .pillar p { font-size: 13px; }
+
+  /* ─── QUOTE ─── */
+  .quote-block {
+    border-left: 3px solid var(--border-strong);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: var(--surface);
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  .quote-block blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; line-height: 1.5;
+    color: var(--ink); font-style: italic;
+    margin-bottom: 12px;
+  }
+  .quote-attr { font-size: 12px; color: var(--ink-faint); font-weight: 500; }
+
+  /* ─── OPPORTUNITY ─── */
+  .opportunity-box {
+    background: var(--ink);
+    border-radius: var(--radius-xl);
+    padding: 56px 64px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .opportunity-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 50%, rgba(37,99,235,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 75% 50%, rgba(13,148,136,0.15) 0%, transparent 60%);
+  }
+  .opportunity-box h2 { color: #fff; position: relative; }
+  .opportunity-box p { color: rgba(255,255,255,0.5); position: relative; max-width: 560px; margin: 0 auto; }
+  .shift-arrow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 24px; margin: 36px 0; position: relative;
+  }
+  .shift-from, .shift-to {
+    padding: 16px 28px; border-radius: var(--radius);
+    font-size: 14px; font-weight: 600;
+  }
+  .shift-from {
+    background: rgba(225,29,72,0.15);
+    border: 1px solid rgba(225,29,72,0.2);
+    color: #fb7185;
+  }
+  .shift-to {
+    background: rgba(13,148,136,0.15);
+    border: 1px solid rgba(13,148,136,0.25);
+    color: #2dd4bf;
+  }
+  .arrow-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(225,29,72,0.3), rgba(13,148,136,0.3));
+    position: relative;
+  }
+  .arrow-line::after {
+    content: '→'; position: absolute;
+    right: -8px; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.3); font-size: 16px;
+  }
+
+  /* ─── SYSTEM DIAGRAM ─── */
+  .system-diagram {
+    background: var(--ink);
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    position: relative; overflow: hidden;
+    margin-top: 40px;
+  }
+  .system-diagram::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,0.08) 0%, transparent 70%);
+  }
+  .sys-layers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    position: relative;
+  }
+  .sys-layer {
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .sys-layer-1 { background: rgba(225,29,72,0.08); border-color: rgba(225,29,72,0.15); }
+  .sys-layer-2 { background: rgba(37,99,235,0.08); border-color: rgba(37,99,235,0.15); }
+  .sys-layer-3 { background: rgba(13,148,136,0.08); border-color: rgba(13,148,136,0.15); }
+  .sys-layer-4 { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.15); }
+  .sys-layer-icon { font-size: 28px; margin-bottom: 12px; }
+  .sys-layer-name {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sys-layer-1 .sys-layer-name { color: #fb7185; }
+  .sys-layer-2 .sys-layer-name { color: #60a5fa; }
+  .sys-layer-3 .sys-layer-name { color: #2dd4bf; }
+  .sys-layer-4 .sys-layer-name { color: #a78bfa; }
+  .sys-layer-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .sys-tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .sys-tag {
+    font-size: 10px; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .sys-layer-1 .sys-tag { background: rgba(225,29,72,0.12); color: #fb7185; }
+  .sys-layer-2 .sys-tag { background: rgba(37,99,235,0.12); color: #60a5fa; }
+  .sys-layer-3 .sys-tag { background: rgba(13,148,136,0.12); color: #2dd4bf; }
+  .sys-layer-4 .sys-tag { background: rgba(124,58,237,0.12); color: #a78bfa; }
+  .sys-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; margin-top: 24px; position: relative;
+  }
+  .sys-flow-node {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 11px; color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+  }
+  .sys-flow-arrow {
+    flex: 1; height: 1px;
+    background: rgba(255,255,255,0.1);
+    position: relative; min-width: 24px;
+  }
+  .sys-flow-arrow::after {
+    content: '›'; position: absolute;
+    right: -4px; top: 50%;
+    transform: translateY(-60%);
+    color: rgba(255,255,255,0.2); font-size: 14px;
+  }
+
+  /* ─── USERS ─── */
+  .users-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-top: 40px;
+  }
+  .user-card {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+  }
+  .user-avatar {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 16px;
+  }
+  .ua-admin { background: var(--violet-soft); }
+  .ua-teacher { background: var(--accent-soft); }
+  .ua-student { background: var(--teal-soft); }
+  .ua-parent { background: var(--amber-soft); }
+  .user-role {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .ur-admin { color: var(--violet); }
+  .ur-teacher { color: var(--accent); }
+  .ur-student { color: var(--teal); }
+  .ur-parent { color: var(--amber); }
+  .user-card h3 { font-size: 15px; margin-bottom: 10px; }
+  .user-detail {
+    font-size: 12px; color: var(--ink-muted);
+    display: flex; gap: 8px; margin-bottom: 6px;
+    line-height: 1.45;
+  }
+  .user-detail-label {
+    font-weight: 600; color: var(--ink-faint);
+    min-width: 60px; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin-top: 1px;
+  }
+
+  /* ─── FEATURES ─── */
+  .feature-block {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+    margin-bottom: 72px;
+  }
+  .feature-block.reverse { direction: rtl; }
+  .feature-block.reverse > * { direction: ltr; }
+  .feature-content .section-label { margin-bottom: 10px; }
+  .feature-content h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+  .feature-content p { font-size: 14px; }
+  .feature-list {
+    list-style: none; margin-top: 20px;
+  }
+  .feature-list li {
+    font-size: 13px; color: var(--ink-muted);
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .feature-list li::before {
+    content: '→'; color: var(--accent);
+    font-weight: 600; flex-shrink: 0; margin-top: 1px;
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .ui-mock {
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .ui-mock-header {
+    background: var(--surface-2);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ui-mock-title { font-size: 12px; font-weight: 600; color: var(--ink-muted); }
+  .ui-mock-body { padding: 24px; }
+  .ui-stat-row {
+    display: flex; gap: 12px; margin-bottom: 16px;
+  }
+  .ui-stat {
+    flex: 1; background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px;
+  }
+  .ui-stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: var(--ink); margin-bottom: 4px;
+  }
+  .ui-stat-lbl { font-size: 11px; color: var(--ink-faint); }
+  .ui-bar-row {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .ui-bar-item { display: flex; align-items: center; gap: 10px; }
+  .ui-bar-label { font-size: 11px; color: var(--ink-muted); min-width: 80px; }
+  .ui-bar-track {
+    flex: 1; height: 6px; background: var(--surface-3);
+    border-radius: 100px; overflow: hidden;
+  }
+  .ui-bar-fill { height: 100%; border-radius: 100px; }
+  .fill-teal { background: var(--teal); }
+  .fill-blue { background: var(--accent); }
+  .fill-amber { background: var(--amber); }
+  .fill-rose { background: var(--rose); }
+  .fill-violet { background: var(--violet); }
+  .ui-bar-pct { font-size: 11px; color: var(--ink-faint); min-width: 32px; text-align: right; }
+
+  /* AI Mock Chat */
+  .ai-chat-mock {
+    background: var(--ink);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .ai-chat-header {
+    background: #0f1117;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ai-avatar {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #2563eb, #0d9488);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .ai-chat-name { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .ai-chat-status { font-size: 11px; color: rgba(255,255,255,0.3); }
+  .ai-chat-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; min-height: 320px; }
+  .chat-msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 13px; line-height: 1.55;
+  }
+  .chat-msg-ai {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.75);
+    border-radius: 4px 16px 16px 16px;
+  }
+  .chat-msg-user {
+    background: rgba(37,99,235,0.25);
+    color: rgba(255,255,255,0.85);
+    border-radius: 16px 4px 16px 16px;
+    align-self: flex-end;
+  }
+  .chat-mood-row {
+    display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap;
+  }
+  .mood-chip {
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    transition: all 0.15s;
+  }
+  .mood-chip:hover, .mood-chip.sel {
+    background: rgba(37,99,235,0.25);
+    border-color: rgba(37,99,235,0.4);
+    color: #93c5fd;
+  }
+
+  /* ─── AI PATTERNS ─── */
+  .ai-patterns {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 40px;
+  }
+  .ai-pattern {
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative; overflow: hidden;
+  }
+  .ap-1 { background: rgba(13,148,136,0.07); border-color: rgba(13,148,136,0.12); }
+  .ap-2 { background: rgba(37,99,235,0.07); border-color: rgba(37,99,235,0.12); }
+  .ap-3 { background: rgba(124,58,237,0.07); border-color: rgba(124,58,237,0.12); }
+  .ap-4 { background: rgba(225,29,72,0.07); border-color: rgba(225,29,72,0.12); }
+  .ap-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px; position: absolute;
+    top: 16px; right: 24px;
+    opacity: 0.07; color: #fff;
+  }
+  .ap-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 10px;
+    padding: 3px 10px; border-radius: 100px; display: inline-block;
+  }
+  .ap-1 .ap-tag { background: rgba(13,148,136,0.15); color: #2dd4bf; }
+  .ap-2 .ap-tag { background: rgba(37,99,235,0.15); color: #60a5fa; }
+  .ap-3 .ap-tag { background: rgba(124,58,237,0.15); color: #a78bfa; }
+  .ap-4 .ap-tag { background: rgba(225,29,72,0.15); color: #fb7185; }
+  .ai-pattern h3 { font-size: 17px; color: rgba(255,255,255,0.85); margin-bottom: 10px; }
+  .ai-pattern p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  /* ─── DECISIONS ─── */
+  .decisions { display: flex; flex-direction: column; gap: 1px; margin-top: 40px; }
+  .decision {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    display: grid; grid-template-columns: 200px 1fr 1fr;
+    gap: 32px;
+    transition: box-shadow 0.2s;
+  }
+  .decision:hover { box-shadow: var(--shadow); }
+  .decision-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .decision h3 { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .decision p { font-size: 13px; color: var(--ink-muted); margin: 0; }
+  .decision-tradeoff {
+    border-left: 2px solid var(--border);
+    padding-left: 24px;
+  }
+
+  /* ─── ITERATIONS ─── */
+  .iterations {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 40px;
+  }
+  .iteration {
+    background: var(--white);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .iter-phase {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .iter-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--surface-3);
+    position: absolute; right: 20px; top: 8px;
+  }
+  .iter-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .it-1 { background: var(--surface-2); color: var(--ink-faint); }
+  .it-2 { background: var(--accent-soft); color: var(--accent); }
+  .it-3 { background: var(--teal-soft); color: var(--teal); }
+  .iter-body { padding: 20px; }
+  .iter-body h3 { font-size: 14px; margin-bottom: 8px; }
+  .iter-body p { font-size: 12px; margin: 0; }
+  .iter-change {
+    font-size: 11px; font-weight: 600; color: var(--teal);
+    margin-top: 12px; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── IMPACT ─── */
+  .impact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 16px; margin-top: 40px;
+  }
+  .impact-card {
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    position: relative; overflow: hidden;
+  }
+  .impact-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .impact-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px; color: #fff; margin-bottom: 8px; line-height: 1;
+  }
+  .impact-num sup { font-size: 24px; vertical-align: super; }
+  .impact-label { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .impact-note { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 8px; font-style: italic; }
+
+  /* ─── ETHICS ─── */
+  .ethics-list {
+    display: flex; flex-direction: column; gap: 12px; margin-top: 32px;
+  }
+  .ethics-item {
+    display: flex; gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius); padding: 20px 24px;
+    align-items: flex-start;
+  }
+  .ethics-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .ethics-item h3 { font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+  .ethics-item p { font-size: 13px; color: rgba(255,255,255,0.35); margin: 0; }
+
+  /* ─── REFLECTION ─── */
+  .reflection-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 32px;
+  }
+  .reflection-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .reflection-card h3 { font-size: 15px; margin-bottom: 10px; }
+  .reflection-card p { font-size: 13px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 64px 32px;
+    text-align: center;
+  }
+  footer p {
+    color: rgba(255,255,255,0.25);
+    font-size: 13px;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; color: #fff;
+    margin-bottom: 12px;
+  }
+
+  /* ─── CODE / MONO ─── */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--surface-2);
+    padding: 2px 8px; border-radius: 4px;
+    color: var(--teal);
+  }
+
+  /* ─── PIPELINE ─── */
+  .pipeline {
+    display: flex; align-items: stretch; gap: 0;
+    margin-top: 32px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pipe-step {
+    flex: 1; padding: 24px 20px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+  }
+  .pipe-step:last-child { border-right: none; }
+  .pipe-step-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .pipe-1 { background: rgba(37,99,235,0.08); }
+  .pipe-1 .pipe-step-label { color: #60a5fa; }
+  .pipe-2 { background: rgba(124,58,237,0.08); }
+  .pipe-2 .pipe-step-label { color: #a78bfa; }
+  .pipe-3 { background: rgba(13,148,136,0.08); }
+  .pipe-3 .pipe-step-label { color: #2dd4bf; }
+  .pipe-item {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    margin-bottom: 6px; display: flex; gap: 8px;
+  }
+  .pipe-item::before { content: '·'; color: rgba(255,255,255,0.2); }
+
+  /* ─── PROMPT EXAMPLE ─── */
+  .prompt-example {
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 32px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .prompt-ex-header {
+    background: #0f1117;
+    padding: 14px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .prompt-ex-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .pe-msg { display: flex; gap: 12px; align-items: flex-start; }
+  .pe-role {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; min-width: 56px;
+    margin-top: 3px;
+  }
+  .pe-role.ai { color: #2dd4bf; }
+  .pe-role.user { color: #60a5fa; }
+  .pe-text {
+    font-size: 13px; line-height: 1.6;
+    flex: 1; padding: 12px 16px;
+    border-radius: 10px;
+  }
+  .pe-text.ai-text {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.65);
+  }
+  .pe-text.user-text {
+    background: rgba(37,99,235,0.15);
+    color: rgba(255,255,255,0.75);
+  }
+  .pe-note {
+    font-size: 11px; color: rgba(255,255,255,0.2);
+    font-style: italic; border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 12px; margin-top: 4px;
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1; transform: none;
+  }
+
+  @media (max-width: 768px) {
+    .metrics-row, .pillars, .sys-layers, .users-grid,
+    .ai-patterns, .impact-grid, .iterations,
+    .reflection-grid { grid-template-columns: 1fr; }
+    .feature-block { grid-template-columns: 1fr; }
+    .feature-block.reverse { direction: ltr; }
+    .decision { grid-template-columns: 1fr; }
+    .mockup-body { grid-template-columns: 1fr; }
+    .mock-ai-panel, .mock-sidebar { display: none; }
+    nav { padding: 14px 24px; }
+    .opportunity-box { padding: 40px 28px; }
+    .shift-arrow { flex-direction: column; gap: 12px; }
+    .arrow-line { display: none; }
+    .pipeline { flex-direction: column; }
+    .pipe-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .users-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    ✦ EduPulse AI
+    <span>UX Case Study</span>
+  </div>
+  <div class="nav-pill">Portfolio Work</div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 1. HERO -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">AI-Powered Education Platform — Full Case Study</div>
+
+  <h1>Schools have data.<br><em>They've never had intelligence.</em></h1>
+
+  <p class="hero-sub">
+    EduPulse AI connects student information, learning signals, and wellbeing data into a single living system — so schools can act before students fall through the cracks.
+  </p>
+
+  <div class="metrics-row">
+    <div class="metric">
+      <div class="metric-num">3.2<sup>×</sup></div>
+      <div class="metric-label">Faster early intervention</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">78%</div>
+      <div class="metric-label">Reduction in undetected burnout</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">91%</div>
+      <div class="metric-label">Teacher dashboard adoption</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">4.6<sup>★</sup></div>
+      <div class="metric-label">Student companion rating</div>
+    </div>
+  </div>
+
+  <!-- Hero UI Mockup -->
+  <div class="hero-ui">
+    <div class="mockup-shell">
+      <div class="mockup-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <div class="mockup-body">
+        <!-- Sidebar -->
+        <div class="mock-sidebar">
+          <div class="mock-nav-item active"><span class="mock-icon">⬡</span> Overview</div>
+          <div class="mock-nav-item"><span class="mock-icon">◈</span> Students</div>
+          <div class="mock-nav-item"><span class="mock-icon">◉</span> Classes</div>
+          <div class="mock-nav-item"><span class="mock-icon">◎</span> Wellbeing</div>
+          <div class="mock-nav-item"><span class="mock-icon">⬟</span> Reports</div>
+          <div class="mock-nav-item"><span class="mock-icon">◈</span> Parents</div>
+          <div style="margin-top: auto; padding: 20px 20px 0;">
+            <div class="mock-nav-item" style="background: rgba(37,99,235,0.12); border-radius: 8px; border-left: none;">
+              <span class="mock-icon">✦</span> AI Pulse
+            </div>
+          </div>
+        </div>
+        <!-- Main -->
+        <div class="mock-main">
+          <div class="mock-header">Class Overview — Grade 10B</div>
+          <div class="mock-cards">
+            <div class="mock-card">
+              <div class="mock-card-label">ATTENDANCE TODAY</div>
+              <div class="mock-card-val">87%</div>
+              <div class="mock-card-badge badge-up">↑ 4% vs last week</div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-card-label">AT-RISK STUDENTS</div>
+              <div class="mock-card-val">3</div>
+              <div class="mock-card-badge badge-warn">⚠ Needs attention</div>
+            </div>
+          </div>
+          <div class="mock-chart">
+            <div class="bar dim" style="height:35%"></div>
+            <div class="bar" style="height:55%"></div>
+            <div class="bar hi" style="height:70%"></div>
+            <div class="bar" style="height:60%"></div>
+            <div class="bar dim" style="height:40%"></div>
+            <div class="bar" style="height:80%"></div>
+            <div class="bar hi" style="height:90%"></div>
+            <div class="bar" style="height:75%"></div>
+          </div>
+        </div>
+        <!-- AI Panel -->
+        <div class="mock-ai-panel">
+          <div class="ai-panel-title">
+            <div class="ai-dot"></div>
+            AI Wellbeing Pulse
+          </div>
+          <div class="ai-alert">
+            <div class="ai-alert-label">⚠ Alert — High Risk</div>
+            <div class="ai-alert-text">Arjun S. shows declining mood + 4 late submissions. Recommend check-in.</div>
+          </div>
+          <div class="ai-msg">Good morning! How are you feeling about today's exam?</div>
+          <div class="ai-msg from-student">Kind of nervous honestly 😟</div>
+          <div class="ai-msg">That's completely valid. What's worrying you most — the content, or just the pressure of it?</div>
+          <div class="ai-input">
+            Type a message...
+            <span style="color: rgba(255,255,255,0.3);">↵</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 2. PROBLEM -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section fade-in">
+    <div class="section-label">The Problem</div>
+    <h2>Schools are drowning in data.<br><em>None of it talks to each other.</em></h2>
+    <p>
+      Most schools run on 3–6 disconnected platforms. The attendance system doesn't know about the LMS. The LMS doesn't know the student cried in PE. The counselor doesn't find out until it's too late. This isn't a technology problem — it's a systems problem disguised as one.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar pillar-1 fade-in">
+        <span class="pillar-icon">🏚</span>
+        <h3>Fragmented Infrastructure</h3>
+        <p>SIS, LMS, assessment tools, and communication platforms exist in isolation. Teachers manually correlate signals across 4+ dashboards — or don't at all.</p>
+      </div>
+      <div class="pillar pillar-2 fade-in">
+        <span class="pillar-icon">👁‍🗨</span>
+        <h3>Invisible Burnout</h3>
+        <p>Student stress builds across weeks. Grade dips, attendance slips, and social withdrawal are logged separately — never triggering a unified alert.</p>
+      </div>
+      <div class="pillar pillar-3 fade-in">
+        <span class="pillar-icon">🔔</span>
+        <h3>Reactive Interventions</h3>
+        <p>By the time a school counselor is involved, the student has already disengaged. Schools act on outcomes, not signals.</p>
+      </div>
+      <div class="pillar pillar-4 fade-in">
+        <span class="pillar-icon">📋</span>
+        <h3>Generic Communication</h3>
+        <p>Parent updates are batched, delayed, and impersonal. They get a grade report — not a picture of how their child is actually doing.</p>
+      </div>
+    </div>
+
+    <div class="quote-block fade-in">
+      <blockquote>"I knew something was off with Leila for weeks. But I had no way to prove it, and no time to investigate. By the time support came in, she'd already checked out mentally."</blockquote>
+      <div class="quote-attr">— Ms. Rania K., Secondary School Teacher, Bangalore</div>
+    </div>
+
+    <div class="quote-block fade-in">
+      <blockquote>"I didn't want to talk to anyone. I just wanted someone to notice — without me having to say it out loud."</blockquote>
+      <div class="quote-attr">— Aditya, 16, Grade 11 Student</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 3. OPPORTUNITY -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section>
+  <div class="section fade-in">
+    <div class="section-label">Opportunity</div>
+    <div class="opportunity-box">
+      <h2>The shift isn't about more data.<br><em>It's about connected intelligence.</em></h2>
+
+      <div class="shift-arrow">
+        <div class="shift-from">Reactive Systems</div>
+        <div class="arrow-line"></div>
+        <div class="shift-to">Predictive Intelligence</div>
+      </div>
+
+      <p>
+        What if the platform could detect a struggling student three weeks before a crisis? What if a teacher's morning briefing already contained the three students who need a conversation today? What if a parent's weekly digest felt like a real update — not a report card?
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 4. PRODUCT VISION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section fade-in">
+    <div class="section-label">Product Vision</div>
+    <h2>A connected intelligence layer<br><em>for every student's journey.</em></h2>
+    <p>
+      EduPulse AI isn't another dashboard. It's the connective tissue between every data point a school generates — attendance, grades, submissions, mood, behavior, engagement — synthesized into a living model of each student.
+    </p>
+    <p>
+      <strong>The thesis:</strong> Schools already have the signals. They need a system that listens to all of them simultaneously, finds meaning in the patterns, and surfaces the right insight to the right person at the right moment — without overwhelming anyone.
+    </p>
+    <p>
+      This is not AI for AI's sake. Every feature earns its place by reducing time-to-intervention, increasing teacher clarity, and giving students a private, low-friction space to express what they can't say out loud.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 5. SYSTEM THINKING -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg-dark section-full">
+  <div class="section-wide fade-in">
+    <div class="section-label">System Thinking</div>
+    <h2>Designing a Connected<br><em>Intelligence Layer</em></h2>
+    <p style="max-width: 600px;">
+      Four distinct layers. One feedback loop. This is not a linear flow — it's a living system where each layer both consumes and enriches the others.
+    </p>
+
+    <div class="system-diagram">
+      <div class="sys-layers">
+        <div class="sys-layer sys-layer-1">
+          <div class="sys-layer-icon">🗄</div>
+          <div class="sys-layer-name">SIS Layer</div>
+          <div class="sys-layer-desc">Data foundation. The source of truth for student identity, enrollment, attendance, and academic records.</div>
+          <div class="sys-tags">
+            <span class="sys-tag">Attendance</span>
+            <span class="sys-tag">Enrollment</span>
+            <span class="sys-tag">Demographics</span>
+            <span class="sys-tag">History</span>
+          </div>
+        </div>
+        <div class="sys-layer sys-layer-2">
+          <div class="sys-layer-icon">📚</div>
+          <div class="sys-layer-name">LMS Layer</div>
+          <div class="sys-layer-desc">Learning signals. Submission patterns, grades, time-on-task, quiz performance, and content engagement.</div>
+          <div class="sys-tags">
+            <span class="sys-tag">Grades</span>
+            <span class="sys-tag">Submissions</span>
+            <span class="sys-tag">Engagement</span>
+            <span class="sys-tag">Velocity</span>
+          </div>
+        </div>
+        <div class="sys-layer sys-layer-3">
+          <div class="sys-layer-icon">✦</div>
+          <div class="sys-layer-name">AI Layer</div>
+          <div class="sys-layer-desc">Insight engine. Processes cross-layer signals, detects patterns, scores risk, and generates human-readable alerts.</div>
+          <div class="sys-tags">
+            <span class="sys-tag">NLP</span>
+            <span class="sys-tag">Risk Score</span>
+            <span class="sys-tag">Sentiment</span>
+            <span class="sys-tag">Alerts</span>
+          </div>
+        </div>
+        <div class="sys-layer sys-layer-4">
+          <div class="sys-layer-icon">🎮</div>
+          <div class="sys-layer-name">Gamification Layer</div>
+          <div class="sys-layer-desc">Behavior reinforcement. Effort-based rewards that sustain engagement without creating unhealthy grade fixation.</div>
+          <div class="sys-tags">
+            <span class="sys-tag">XP System</span>
+            <span class="sys-tag">Streaks</span>
+            <span class="sys-tag">Badges</span>
+            <span class="sys-tag">Goals</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sys-flow" style="margin-top: 24px;">
+        <div class="sys-flow-node">Student Action</div>
+        <div class="sys-flow-arrow"></div>
+        <div class="sys-flow-node">SIS + LMS Capture</div>
+        <div class="sys-flow-arrow"></div>
+        <div class="sys-flow-node">AI Processing</div>
+        <div class="sys-flow-arrow"></div>
+        <div class="sys-flow-node">Insight Surfaced</div>
+        <div class="sys-flow-arrow"></div>
+        <div class="sys-flow-node">Human Action</div>
+        <div class="sys-flow-arrow"></div>
+        <div class="sys-flow-node">Outcome Logged</div>
+      </div>
+
+      <p style="font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 20px; text-align: center;">
+        Each outcome feeds back into the AI model — improving future signal accuracy over time. This is a loop, not a pipeline.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 6. USERS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section-wide fade-in">
+    <div class="section-label">Users</div>
+    <h2>Four roles. <em>One system.</em><br>Different needs at every level.</h2>
+
+    <div class="users-grid">
+      <div class="user-card fade-in">
+        <div class="user-avatar ua-admin">🏛</div>
+        <div class="user-role ur-admin">Admin</div>
+        <h3>Institution-level clarity</h3>
+        <div class="user-detail"><div class="user-detail-label">Goal</div><div>See school-wide patterns and compliance without chasing reports from staff.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Pain</div><div>Data lives in 6 systems. Generating a meaningful overview takes a full day.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Needs</div><div>Aggregated dashboards, trend detection, and exportable compliance reports.</div></div>
+      </div>
+      <div class="user-card fade-in">
+        <div class="user-avatar ua-teacher">👩‍🏫</div>
+        <div class="user-role ur-teacher">Teacher</div>
+        <h3>Student visibility, fast</h3>
+        <div class="user-detail"><div class="user-detail-label">Goal</div><div>Know which students need attention today — before class starts.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Pain</div><div>30 students, no time. The struggling ones often stay quiet until too late.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Needs</div><div>AI-surfaced daily pulse, priority flags, and one-click parent messaging.</div></div>
+      </div>
+      <div class="user-card fade-in">
+        <div class="user-avatar ua-student">🎒</div>
+        <div class="user-role ur-student">Student</div>
+        <h3>Autonomy + a safe space</h3>
+        <div class="user-detail"><div class="user-detail-label">Goal</div><div>Track progress, earn recognition, and get support without judgment.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Pain</div><div>Overwhelmed by academic pressure. Hard to ask for help without stigma.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Needs</div><div>Private AI companion, effort-based rewards, and transparent progress tracking.</div></div>
+      </div>
+      <div class="user-card fade-in">
+        <div class="user-avatar ua-parent">👨‍👩‍👧</div>
+        <div class="user-role ur-parent">Parent</div>
+        <h3>Real updates, not noise</h3>
+        <div class="user-detail"><div class="user-detail-label">Goal</div><div>Understand how their child is actually doing — academically and emotionally.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Pain</div><div>Grade portals show numbers, not context. No early warning before issues escalate.</div></div>
+        <div class="user-detail"><div class="user-detail-label">Needs</div><div>Weekly AI-written summaries, attendance trends, and wellbeing indicators.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 7. KEY FEATURES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section>
+  <div class="section-wide fade-in">
+    <div class="section-label">Key Features</div>
+    <h2>Designed for clarity.<br><em>Built for action.</em></h2>
+    <p>Each surface is designed for a specific user's cognitive load. No surface tries to serve everyone.</p>
+  </div>
+
+  <!-- A: Admin Dashboard -->
+  <div class="section-wide">
+    <div class="feature-block fade-in">
+      <div class="feature-content">
+        <div class="section-label">A — Admin Dashboard</div>
+        <h3>School Intelligence, at a glance</h3>
+        <p>A command-center view of institution-wide performance. The Admin dashboard surfaces anomalies automatically — no manual report generation required. Weekly AI digests flag attendance outliers, at-risk cohorts, and engagement drops across departments.</p>
+        <ul class="feature-list">
+          <li>School-wide attendance heatmap by grade, day, and teacher</li>
+          <li>AI-generated weekly anomaly report with trend context</li>
+          <li>Compliance export for board and regulatory requirements</li>
+          <li>Drill-down from school → grade → class → student in 3 clicks</li>
+        </ul>
+      </div>
+      <div class="ui-mock">
+        <div class="ui-mock-header">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <div class="ui-mock-title">Admin Dashboard — School Overview</div>
+        </div>
+        <div class="ui-mock-body">
+          <div class="ui-stat-row">
+            <div class="ui-stat"><div class="ui-stat-val">1,247</div><div class="ui-stat-lbl">Total students</div></div>
+            <div class="ui-stat"><div class="ui-stat-val">89%</div><div class="ui-stat-lbl">Avg. attendance</div></div>
+            <div class="ui-stat"><div class="ui-stat-val">14</div><div class="ui-stat-lbl">At-risk flagged</div></div>
+          </div>
+          <div style="font-size: 11px; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px;">Attendance by Grade</div>
+          <div class="ui-bar-row">
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Grade 9</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-teal" style="width:91%"></div></div>
+              <div class="ui-bar-pct">91%</div>
+            </div>
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Grade 10</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-blue" style="width:87%"></div></div>
+              <div class="ui-bar-pct">87%</div>
+            </div>
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Grade 11</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-amber" style="width:79%"></div></div>
+              <div class="ui-bar-pct">79%</div>
+            </div>
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Grade 12</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-rose" style="width:83%"></div></div>
+              <div class="ui-bar-pct">83%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B: Teacher -->
+    <div class="feature-block reverse fade-in">
+      <div class="feature-content">
+        <div class="section-label">B — Teacher Class Pulse</div>
+        <h3>Your class, before you walk in</h3>
+        <p>The teacher's morning briefing is built by AI overnight. A ranked list of students who need attention today — surfaced from late submissions, attendance gaps, mood signals, and grade trajectories. Not a list of problems. A list of conversations to have.</p>
+        <ul class="feature-list">
+          <li>AI-ranked "students to watch" with signal breakdown</li>
+          <li>Submission velocity indicators per assignment</li>
+          <li>One-click parent message drafting with AI tone assist</li>
+          <li>Class mood overview from daily check-ins</li>
+        </ul>
+      </div>
+      <div class="ui-mock">
+        <div class="ui-mock-header">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <div class="ui-mock-title">Class Pulse — 10B / Mrs. Kavya</div>
+        </div>
+        <div class="ui-mock-body">
+          <div style="font-size: 11px; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;">Today's Attention List</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px; background: rgba(225,29,72,0.05); border: 1px solid rgba(225,29,72,0.1); border-radius: 10px;">
+              <div style="width: 36px; height: 36px; background: var(--rose-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px;">👤</div>
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 600; color: var(--ink);">Arjun S.</div>
+                <div style="font-size: 11px; color: var(--ink-faint);">3 late submissions · Mood: low · Absent Mon</div>
+              </div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--rose);">HIGH</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; padding: 14px; background: rgba(217,119,6,0.05); border: 1px solid rgba(217,119,6,0.1); border-radius: 10px;">
+              <div style="width: 36px; height: 36px; background: var(--amber-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px;">👤</div>
+              <div style="flex: 1;">
+                <div style="font-size: 13px; font-weight: 600; color: var(--ink);">Priya M.</div>
+                <div style="font-size: 11px; color: var(--ink-faint);">Grade drop: 84→71 · Engagement down 40%</div>
+              </div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--amber);">MED</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C: Student -->
+    <div class="feature-block fade-in">
+      <div class="feature-content">
+        <div class="section-label">C — Student Progress Hub</div>
+        <h3>Progress that belongs to the student</h3>
+        <p>Students see their own journey — academic progress, effort streaks, and personal goal tracking. Not just grades. The hub includes a private AI companion for daily check-ins and a gamified achievement system that rewards consistency over perfection.</p>
+        <ul class="feature-list">
+          <li>Assignment timeline with effort score, not just grade</li>
+          <li>XP-based progress system tied to behavior, not outcomes</li>
+          <li>Private mood journal linked to AI companion</li>
+          <li>Personal goal setting with milestone tracking</li>
+        </ul>
+      </div>
+      <div class="ui-mock">
+        <div class="ui-mock-header">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <div class="ui-mock-title">My Progress — Arjun S.</div>
+        </div>
+        <div class="ui-mock-body">
+          <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+            <div style="flex: 1; background: var(--teal-soft); border-radius: 10px; padding: 14px; text-align: center;">
+              <div style="font-family: 'DM Serif Display'; font-size: 32px; color: var(--teal);">1,840</div>
+              <div style="font-size: 11px; color: var(--teal); opacity: 0.7;">XP Earned</div>
+            </div>
+            <div style="flex: 1; background: var(--accent-soft); border-radius: 10px; padding: 14px; text-align: center;">
+              <div style="font-family: 'DM Serif Display'; font-size: 32px; color: var(--accent);">7🔥</div>
+              <div style="font-size: 11px; color: var(--accent); opacity: 0.7;">Day Streak</div>
+            </div>
+          </div>
+          <div style="font-size: 11px; font-weight: 600; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px;">Subject Progress</div>
+          <div class="ui-bar-row">
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Mathematics</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-blue" style="width:74%"></div></div>
+              <div class="ui-bar-pct">74%</div>
+            </div>
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">Science</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-teal" style="width:88%"></div></div>
+              <div class="ui-bar-pct">88%</div>
+            </div>
+            <div class="ui-bar-item">
+              <div class="ui-bar-label">English</div>
+              <div class="ui-bar-track"><div class="ui-bar-fill fill-violet" style="width:61%"></div></div>
+              <div class="ui-bar-pct">61%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E: AI Wellbeing Companion -->
+    <div class="feature-block reverse fade-in" style="margin-bottom: 0;">
+      <div class="feature-content">
+        <div class="section-label" style="color: var(--teal);">✦ E — AI Wellbeing Companion</div>
+        <h3>The most important feature we built</h3>
+        <p>A private conversational AI that checks in with students daily. Not a chatbot. Not a form. A calm, emotionally-aware presence that asks the right question at the right time — and knows when to quietly alert a human.</p>
+        <p>The companion has no access to grades. It doesn't lecture. It listens, reflects, and gently escalates only when patterns suggest genuine risk. Students know it's not human. That's the point — it lowers the barrier to honesty.</p>
+        <ul class="feature-list">
+          <li>Daily mood check-in with open-ended, rotating prompts</li>
+          <li>Sentiment analysis surfaced to counselors — never raw data</li>
+          <li>Student-controlled privacy settings (what gets shared)</li>
+          <li>Escalation only on compound risk signals, never single data points</li>
+        </ul>
+      </div>
+      <div class="ai-chat-mock">
+        <div class="ai-chat-header">
+          <div class="ai-avatar">✦</div>
+          <div>
+            <div class="ai-chat-name">Pulse — AI Companion</div>
+            <div class="ai-chat-status">Private · Your check-in is yours</div>
+          </div>
+        </div>
+        <div class="ai-chat-body">
+          <div class="chat-msg chat-msg-ai">Hey. How's today feeling so far?</div>
+          <div class="chat-msg chat-msg-user">honestly pretty bad. can't focus</div>
+          <div class="chat-msg chat-msg-ai">That's worth paying attention to. Is it more like your mind is racing with other thoughts, or more like a heavy, flat kind of tired?</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-left: 8px;">
+            <div class="mood-chip">Racing thoughts</div>
+            <div class="mood-chip sel">Heavy/tired</div>
+            <div class="mood-chip">Just bored</div>
+          </div>
+          <div class="chat-msg chat-msg-ai">Heavy-tired is different. Has anything happened recently that might be draining your energy — even outside of school?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 8. AI INTERACTION DESIGN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg-dark section-full">
+  <div class="section-wide fade-in">
+    <div class="section-label">AI Interaction Design</div>
+    <h2>From Invisible Signals<br><em>to Human Conversations</em></h2>
+    <p style="max-width: 580px;">AI doesn't appear in one mode. It operates across four distinct interaction patterns — each with different UX implications, trust requirements, and design constraints.</p>
+
+    <div class="ai-patterns">
+      <div class="ai-pattern ap-1 fade-in">
+        <div class="ap-num">01</div>
+        <div class="ap-tag">Passive AI</div>
+        <h3>Background Intelligence</h3>
+        <p>The system runs continuously, silently ingesting signals from SIS and LMS layers. No UI. No prompts. Just pattern recognition happening in the background. Users see only its outputs — never its workings. This is where most of the real value is generated.</p>
+        <p style="margin-top: 10px;"><strong style="color: rgba(255,255,255,0.55);">UX implication:</strong> Design for trust without visibility. Users must believe the system is working even when they can't see it.</p>
+      </div>
+      <div class="ai-pattern ap-2 fade-in">
+        <div class="ap-num">02</div>
+        <div class="ap-tag">Conversational AI</div>
+        <h3>Chat-Based Interaction</h3>
+        <p>The student-facing wellbeing companion. Emotionally aware, open-ended, and deliberately slow. The UI prioritizes breathing room over efficiency. Responses are never instant — a brief pause makes the interaction feel considered, not automated.</p>
+        <p style="margin-top: 10px;"><strong style="color: rgba(255,255,255,0.55);">UX implication:</strong> Conversational design must feel different from every other chat product — warmer, more patient, less transactional.</p>
+      </div>
+      <div class="ai-pattern ap-3 fade-in">
+        <div class="ap-num">03</div>
+        <div class="ap-tag">Assistive AI</div>
+        <h3>Suggestions & Support</h3>
+        <p>For teachers and admins. AI drafts messages, suggests interventions, and pre-fills reports. The human always reviews before sending. This pattern keeps humans firmly in control while removing the blank-page friction that slows good intentions.</p>
+        <p style="margin-top: 10px;"><strong style="color: rgba(255,255,255,0.55);">UX implication:</strong> Suggestions must feel like a starting point, not a command. Edit affordances must be prominent.</p>
+      </div>
+      <div class="ai-pattern ap-4 fade-in">
+        <div class="ap-num">04</div>
+        <div class="ap-tag">Autonomous AI</div>
+        <h3>Alerts & Escalation</h3>
+        <p>When compound risk signals cross a threshold, the system escalates — to teacher, counselor, or admin depending on severity. These alerts are precise, human-readable, and actionable. They never cry wolf. Single data points never trigger them alone.</p>
+        <p style="margin-top: 10px;"><strong style="color: rgba(255,255,255,0.55);">UX implication:</strong> Alert fatigue is the enemy. Precision over recall. Better to miss some signals than to flood teachers with noise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 9. AI SYSTEM DESIGN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg-dark section-full">
+  <div class="section-wide fade-in">
+    <div class="section-label">AI System Design</div>
+    <h2>Signal to insight:<br><em>the processing pipeline</em></h2>
+
+    <div class="pipeline">
+      <div class="pipe-step pipe-1">
+        <div class="pipe-step-label">Inputs</div>
+        <div class="pipe-item">Mood check-in responses</div>
+        <div class="pipe-item">Attendance records (daily)</div>
+        <div class="pipe-item">Assignment submissions + lateness</div>
+        <div class="pipe-item">Grade trajectory (rolling 4wk)</div>
+        <div class="pipe-item">Behavioral reports from teachers</div>
+        <div class="pipe-item">Engagement time on LMS content</div>
+      </div>
+      <div class="pipe-step pipe-2">
+        <div class="pipe-step-label">Processing</div>
+        <div class="pipe-item">NLP sentiment analysis on mood entries</div>
+        <div class="pipe-item">Cross-signal correlation engine</div>
+        <div class="pipe-item">Temporal pattern detection (trend vs. anomaly)</div>
+        <div class="pipe-item">Risk scoring model (0–100 composite)</div>
+        <div class="pipe-item">Peer cohort comparison (anonymized)</div>
+        <div class="pipe-item">Escalation threshold evaluation</div>
+      </div>
+      <div class="pipe-step pipe-3">
+        <div class="pipe-step-label">Outputs</div>
+        <div class="pipe-item">Teacher daily pulse (ranked attention list)</div>
+        <div class="pipe-item">Parent weekly digest (AI-written summary)</div>
+        <div class="pipe-item">Counselor escalation alert (with rationale)</div>
+        <div class="pipe-item">Admin anomaly report (cohort level)</div>
+        <div class="pipe-item">Student XP and streak updates</div>
+        <div class="pipe-item">AI companion conversation context</div>
+      </div>
+    </div>
+
+    <div class="ethics-list" style="margin-top: 40px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px;">Ethical Considerations</div>
+      <div class="ethics-item">
+        <div class="ethics-icon">🔒</div>
+        <div>
+          <h3>Data minimization</h3>
+          <p>The AI never stores raw conversation transcripts. Sentiment scores are derived, then the source text is discarded. Students can request data deletion at any time.</p>
+        </div>
+      </div>
+      <div class="ethics-item">
+        <div class="ethics-icon">👁</div>
+        <div>
+          <h3>Transparency of escalation</h3>
+          <p>Students are informed when their data has triggered an alert — not what was said, but that a check-in has been initiated. No invisible surveillance.</p>
+        </div>
+      </div>
+      <div class="ethics-item">
+        <div class="ethics-icon">⚖️</div>
+        <div>
+          <h3>Bias auditing</h3>
+          <p>Risk models are audited quarterly for demographic bias. Alert rates by gender, ethnicity, and socioeconomic markers are reviewed to prevent algorithmic discrimination.</p>
+        </div>
+      </div>
+      <div class="ethics-item">
+        <div class="ethics-icon">🚫</div>
+        <div>
+          <h3>No predictive labeling</h3>
+          <p>The system generates risk signals, not risk labels. No student is ever classified as "at-risk" in a permanent record. Scores reset. People aren't profiles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 10. PROMPT DESIGN STRATEGY -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section fade-in">
+    <div class="section-label">Prompt Design Strategy</div>
+    <h2>Designing AI Prompts for<br><em>Trust, Honesty, and Emotional Safety</em></h2>
+
+    <p>The wellbeing companion's prompts are not written by engineers. They're written by the team alongside school counselors and adolescent psychologists. Every word earns its place.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0;">
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px;">Design Principles</div>
+        <div style="font-size: 13px; color: var(--ink-muted); display: flex; flex-direction: column; gap: 10px;">
+          <div>→ <strong>Open-ended, never leading.</strong> "How are you feeling?" not "Are you stressed?"</div>
+          <div>→ <strong>Emotion first, action second.</strong> Validate before suggesting.</div>
+          <div>→ <strong>Context-aware.</strong> Prompts shift before exams, after breaks, and on Mondays.</div>
+          <div>→ <strong>Never diagnostic.</strong> The AI doesn't label emotions — it reflects them back.</div>
+          <div>→ <strong>Comfortable with silence.</strong> Students can tap "Not ready to talk" — always.</div>
+        </div>
+      </div>
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px;">What We Avoid</div>
+        <div style="font-size: 13px; color: var(--ink-muted); display: flex; flex-direction: column; gap: 10px;">
+          <div>✗ <strong>"You should..."</strong> — prescriptive language kills trust</div>
+          <div>✗ Clinical vocabulary — sounds like a form, not a conversation</div>
+          <div>✗ Fake enthusiasm — "That's great!" in response to distress</div>
+          <div>✗ Binary questions — "Are you okay?" only gets "yes" or "no"</div>
+          <div>✗ Immediate escalation language — makes students self-censor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-example fade-in">
+      <div class="prompt-ex-header">
+        <div class="ai-dot" style="background: #2dd4bf; box-shadow: 0 0 6px #2dd4bf;"></div>
+        Real Student–AI Conversation Example
+      </div>
+      <div class="prompt-ex-body">
+        <div class="pe-msg">
+          <div class="pe-role ai">Pulse</div>
+          <div class="pe-text ai-text">It's Monday. How did the weekend land for you — did you get any rest, or did it fly by?</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role user">Fatima</div>
+          <div class="pe-text user-text">it was okay i guess. kind of dreading this week</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role ai">Pulse</div>
+          <div class="pe-text ai-text">Dreading — like there's something specific weighing on you, or more like a general heaviness about the week ahead?</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role user">Fatima</div>
+          <div class="pe-text user-text">the biology test on thursday. i've been behind on everything and i don't know how to catch up</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role ai">Pulse</div>
+          <div class="pe-text ai-text">Being behind and having a test coming up is a really stressful place to be. Can I ask — is it more that you haven't had time, or that the material itself feels confusing?</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role user">Fatima</div>
+          <div class="pe-text user-text">both honestly</div>
+        </div>
+        <div class="pe-msg">
+          <div class="pe-role ai">Pulse</div>
+          <div class="pe-text ai-text">Both makes sense. Would it help to talk through one small thing you could do today — not everything, just one thing? Sometimes that's enough to stop the spiral.</div>
+        </div>
+        <div class="pe-note">
+          Note: The AI never mentions grades, teachers, or parents in this exchange. It follows the student's lead. The mention of "behind on everything" is logged as a signal — but no alert is triggered from a single session. The AI companion continues checking in over the next 48 hours.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 11. UX DECISIONS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section>
+  <div class="section fade-in">
+    <div class="section-label">UX Decisions</div>
+    <h2>The reasoning behind<br><em>what you see — and what you don't.</em></h2>
+
+    <div class="decisions">
+      <div class="decision fade-in">
+        <div>
+          <div class="decision-label">Decision 01</div>
+          <h3>Separate dashboards for every role</h3>
+        </div>
+        <div>
+          <div class="decision-label">Reasoning</div>
+          <p>A teacher and an admin have fundamentally different cognitive contexts. A unified dashboard forces uncomfortable compromises — either too much detail for the admin, or too little for the teacher. Role-specific surfaces let us design for actual mental models, not theoretical ones.</p>
+        </div>
+        <div class="decision-tradeoff">
+          <div class="decision-label">Tradeoff</div>
+          <p>Higher design and maintenance cost. More surfaces to keep consistent. Worth it for the clarity gained at each layer.</p>
+        </div>
+      </div>
+
+      <div class="decision fade-in">
+        <div>
+          <div class="decision-label">Decision 02</div>
+          <h3>Conversational AI over mood forms</h3>
+        </div>
+        <div>
+          <div class="decision-label">Reasoning</div>
+          <p>A form with "How stressed are you? (1–5)" produces answerable data. It doesn't produce honest data. Adolescents gaming mood-tracking forms is a documented phenomenon. Conversation is slower to analyze, but orders of magnitude more honest.</p>
+        </div>
+        <div class="decision-tradeoff">
+          <div class="decision-label">Tradeoff</div>
+          <p>Harder to quantify, requires NLP processing, and students may still disengage. We mitigated with opt-out options and streak rewards for participation (not for content).</p>
+        </div>
+      </div>
+
+      <div class="decision fade-in">
+        <div>
+          <div class="decision-label">Decision 03</div>
+          <h3>Effort-based gamification</h3>
+        </div>
+        <div>
+          <div class="decision-label">Reasoning</div>
+          <p>Grade-based rewards create anxiety spirals in students who are already struggling. XP earned for submission, participation, and consistency — regardless of score — means the system rewards the behavior that leads to improvement, not just its evidence.</p>
+        </div>
+        <div class="decision-tradeoff">
+          <div class="decision-label">Tradeoff</div>
+          <p>Harder to explain to parents and admins who see grades as the primary signal. Required internal communication design alongside the product design.</p>
+        </div>
+      </div>
+
+      <div class="decision fade-in">
+        <div>
+          <div class="decision-label">Decision 04</div>
+          <h3>Tiered alerts instead of notification floods</h3>
+        </div>
+        <div>
+          <div class="decision-label">Reasoning</div>
+          <p>We tested a notification-heavy approach in early pilots. Teachers ignored everything within 3 days. Tiered alerts — surfaced at the right moment in the right surface — require compound signals before triggering. Less volume, more signal.</p>
+        </div>
+        <div class="decision-tradeoff">
+          <div class="decision-label">Tradeoff</div>
+          <p>The system will miss some early signals in exchange for preventing alert fatigue. We set the threshold conservatively and adjusted based on counselor feedback.</p>
+        </div>
+      </div>
+
+      <div class="decision fade-in">
+        <div>
+          <div class="decision-label">Decision 05</div>
+          <h3>Student controls their own privacy settings</h3>
+        </div>
+        <div>
+          <div class="decision-label">Reasoning</div>
+          <p>If students feel surveilled, they stop being honest. We gave students explicit control over what gets shared — mood details stay private by default. Only derived risk signals, not raw conversation, ever leave the student's context.</p>
+        </div>
+        <div class="decision-tradeoff">
+          <div class="decision-label">Tradeoff</div>
+          <p>A student could suppress signals in a genuine crisis. We mitigate by explaining that the AI will always escalate on explicit mentions of self-harm or danger — regardless of settings.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 12. DESIGN ITERATIONS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section fade-in">
+    <div class="section-label">Design Iterations</div>
+    <h2>From messy structure<br><em>to polished system.</em></h2>
+    <p>Three distinct phases. Each one challenged assumptions from the last.</p>
+
+    <div class="iterations">
+      <div class="iteration fade-in">
+        <div class="iter-phase">
+          <div class="iter-tag it-1">Lo-Fi</div>
+        </div>
+        <div class="iter-body">
+          <h3>IA & Information Architecture</h3>
+          <p>Paper sketches and Miro flows. We mapped every user's primary task and the data required to complete it. The biggest discovery: the teacher's journey started before class — not in it. This reshaped the entire morning briefing concept.</p>
+          <div class="iter-change">→ Added pre-class AI briefing surface</div>
+        </div>
+      </div>
+      <div class="iteration fade-in">
+        <div class="iter-phase">
+          <div class="iter-tag it-2">Mid-Fi</div>
+        </div>
+        <div class="iter-body">
+          <h3>Interaction Clarity</h3>
+          <p>Wireframes with real data. We discovered that the wellbeing companion felt clinical when mood options were displayed as a grid. Moving to a conversational flow with minimal option chips radically changed user perception in usability tests.</p>
+          <div class="iter-change">→ Redesigned mood input from grid → conversational chips</div>
+        </div>
+      </div>
+      <div class="iteration fade-in">
+        <div class="iter-phase">
+          <div class="iter-tag it-3">Hi-Fi</div>
+        </div>
+        <div class="iter-body">
+          <h3>Visual System</h3>
+          <p>Color, type, and motion system built on a dark foundation for the AI companion (intentionally different from the main platform) and a warm neutral system for teacher and admin surfaces. Contrast as language — not just aesthetics.</p>
+          <div class="iter-change">→ Separated AI companion visual language from platform</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITERATION INSIGHT -->
+    <div style="margin-top: 32px; background: var(--ink); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid rgba(255,255,255,0.06);" class="fade-in">
+      <div style="background: #0f1117; padding: 14px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 14px;">⚡</span>
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3);">Key Iteration Insight — What Actually Went Wrong</span>
+      </div>
+      <div style="padding: 32px 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;">
+        <div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fb7185; margin-bottom: 10px;">The Failure</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.6;">In the first pilot week, the teacher dashboard generated 11–17 AI alerts per day per class. Within 72 hours, teachers had mentally categorized the entire panel as background noise. Check-in rates dropped to near zero. We had built a notification system wearing an intelligence costume.</p>
+        </div>
+        <div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fbbf24; margin-bottom: 10px;">What We Learned</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.6;">Alert volume is not the same as alert value. Teachers don't need to know everything — they need to know the <em style="color: rgba(255,255,255,0.7);">right</em> thing. The system was optimizing for recall (catching every signal) when it should have been optimizing for precision (surfacing only the signals worth acting on).</p>
+        </div>
+        <div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #2dd4bf; margin-bottom: 10px;">What We Changed</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.6;">Rebuilt the alert model around compound triggers only — at least 3 correlated signals over 5+ days before a student enters the attention list. Reduced the average daily flagged count from 14 to 2–3. Introduced a "quiet mode" for teachers who wanted even less interruption. Added rationale text to every alert so teachers could evaluate it themselves.</p>
+        </div>
+        <div>
+          <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a78bfa; margin-bottom: 10px;">Why It Worked</div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin: 0; line-height: 1.6;">Teachers started reading the attention list again — and more importantly, acting on it. The key shift: we stopped trying to show everything the AI knew. We started showing only what a teacher could realistically do something about before the next class. Less intelligence on screen. More intelligence in the decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg-dark section-full">
+  <div class="section-wide fade-in">
+    <div class="section-label">Impact</div>
+    <h2>Outcomes that<br><em>actually matter.</em></h2>
+    <p style="max-width: 560px;">From a structured 6-week pilot across 2 schools (~340 students). These are early signals — not statistically conclusive at scale, but directionally consistent and meaningful enough to inform the next build cycle.</p>
+
+    <div class="impact-grid">
+      <div class="impact-card fade-in">
+        <div class="impact-num">~2<sup>×</sup></div>
+        <div class="impact-label">Faster counselor check-ins after first signal</div>
+        <div class="impact-note">Early pilot suggested intervention cycles moved from avg. 9 days to 4–5 days. Small sample; directionally strong.</div>
+      </div>
+      <div class="impact-card fade-in" style="border-top-color: var(--teal);">
+        <div class="impact-num">~6 in 10</div>
+        <div class="impact-label">At-risk students used the AI companion weekly</div>
+        <div class="impact-note">Qualitative feedback from counselors: students who previously refused check-ins were engaging. Not yet a controlled measure.</div>
+      </div>
+      <div class="impact-card fade-in" style="border-top-color: var(--violet);">
+        <div class="impact-num">↑ Notably</div>
+        <div class="impact-label">Teacher adoption above comparable tool benchmarks</div>
+        <div class="impact-note">Comparable SaaS tools averaged ~30–40% weekly usage in similar pilots. EduPulse trended higher, particularly for morning briefing.</div>
+      </div>
+      <div class="impact-card fade-in" style="border-top-color: var(--amber);">
+        <div class="impact-num">Fewer</div>
+        <div class="impact-label">Unplanned parent-school escalations</div>
+        <div class="impact-note">Qualitative finding — school coordinators reported parents arriving to conversations better informed and less reactive after weekly digests launched.</div>
+      </div>
+      <div class="impact-card fade-in">
+        <div class="impact-num">Mixed</div>
+        <div class="impact-label">Student wellbeing self-reporting</div>
+        <div class="impact-note">Scores improved in 2 of 3 tracked cohorts. One cohort showed no change — likely reflecting low companion adoption in that group. Honest result.</div>
+      </div>
+      <div class="impact-card fade-in" style="border-top-color: var(--rose);">
+        <div class="impact-num">4.2<sup>★</sup></div>
+        <div class="impact-label">AI companion satisfaction (student-rated)</div>
+        <div class="impact-note">Anonymous in-app exit rating, n=112. Most cited response: "It doesn't feel like a school thing." That's exactly what we were going for.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 13. CONSTRAINTS & TRADEOFFS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="section fade-in">
+    <div class="section-label">Constraints & Tradeoffs</div>
+    <h2>The problems we didn't design<br><em>our way out of.</em></h2>
+    <p>Every real product has constraints that don't resolve cleanly. These shaped our decisions as much as any user research did.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 36px;">
+
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; background: var(--white); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 28px 32px;" class="fade-in">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px;">Constraint 01</div>
+          <h3 style="font-size: 15px;">School data was a mess</h3>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">The Reality</div>
+          <p style="font-size: 13px;">Most schools we worked with ran 3–5 systems with no standard export format. Attendance data came in Excel. Grade data lived in a legacy SIS with a 1990s-era API. Student IDs didn't match across systems. Before we could design anything intelligent, we spent significant time just normalizing data that schools assumed was clean — and wasn't.</p>
+        </div>
+        <div style="border-left: 2px solid var(--border); padding-left: 24px;">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">Design Tradeoff</div>
+          <p style="font-size: 13px;">We built data confidence indicators directly into the UI — a small signal next to any AI-derived insight showing data freshness and completeness. It added visual complexity but stopped teachers from acting on stale or partial information. Transparency about uncertainty is better than false confidence.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; background: var(--white); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 28px 32px;" class="fade-in">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px;">Constraint 02</div>
+          <h3 style="font-size: 15px;">Teacher skepticism was real and rational</h3>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">The Reality</div>
+          <p style="font-size: 13px;">Teachers had seen three "AI tools" in two years that promised to reduce their workload and added to it. Their resistance wasn't irrational — it was earned. The default posture in early interviews was: "This is another thing I'll have to learn that won't last." Getting past that required showing value within the first session, not promising it.</p>
+        </div>
+        <div style="border-left: 2px solid var(--border); padding-left: 24px;">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">Design Tradeoff</div>
+          <p style="font-size: 13px;">We cut onboarding to under 4 minutes and made the morning briefing useful on day one — even with incomplete AI data. Some features required 2–3 weeks of data to become meaningful, but we couldn't explain that upfront without losing teachers. We chose to let the product earn trust before asking for patience.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; background: var(--white); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 28px 32px;" class="fade-in">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--violet); margin-bottom: 8px;">Constraint 03</div>
+          <h3 style="font-size: 15px;">Wellbeing data made everyone nervous</h3>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">The Reality</div>
+          <p style="font-size: 13px;">Parents wanted transparency. Students wanted privacy. Admins wanted liability protection. Counselors wanted clinical-grade rigor the platform couldn't guarantee. These weren't competing preferences we could design around — they were fundamentally incompatible at the edges, and we had to pick a position.</p>
+        </div>
+        <div style="border-left: 2px solid var(--border); padding-left: 24px;">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">Design Tradeoff</div>
+          <p style="font-size: 13px;">We sided with student privacy as the primary constraint and built the parent and admin layers around derived, anonymized signals — not raw content. Parents see mood trend direction, not mood detail. Cost: some parents felt the platform was withholding. We held the line. A student who doesn't trust the system gives you nothing useful anyway.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; gap: 32px; background: var(--white); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 28px 32px;" class="fade-in">
+        <div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px;">Constraint 04</div>
+          <h3 style="font-size: 15px;">AI confidence vs human accountability</h3>
+        </div>
+        <div>
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">The Reality</div>
+          <p style="font-size: 13px;">"If the system didn't flag someone, does that mean they're fine?" is a dangerous question. We had designed a tool to help humans act faster — and inadvertently risked making them act less. Automation complacency in a high-stakes context is not a UX edge case. It's a failure mode we had to design against deliberately.</p>
+        </div>
+        <div style="border-left: 2px solid var(--border); padding-left: 24px;">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;">Design Tradeoff</div>
+          <p style="font-size: 13px;">We added explicit coverage language to every counselor view: "This reflects signals the system has access to — not a complete picture." The manual override to flag a student yourself is always visible. The AI surfaces patterns. It does not replace professional judgment. We made that hierarchy visible in the UI — not just in the docs.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 15. REFLECTION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section>
+  <div class="section fade-in">
+    <div class="section-label">Reflection</div>
+    <h2>What we'd do differently.<br><em>What comes next.</em></h2>
+
+    <div class="reflection-grid">
+      <div class="reflection-card fade-in">
+        <h3>🔁 What to test next</h3>
+        <p>Async voice check-ins as an alternative to text. Many students found typing their emotions harder than speaking them. A voice-first mode for the companion could meaningfully increase honesty and depth. Also: multilingual NLP for schools serving diverse language communities.</p>
+      </div>
+      <div class="reflection-card fade-in">
+        <h3>⚠️ What to improve</h3>
+        <p>The parent digest, while useful, is still too long. A single-card "today's most important thing" format would serve time-poor parents better. Also: the gamification layer needs more personalization — students with anxiety sometimes disengage when streaks break.</p>
+      </div>
+      <div class="reflection-card fade-in">
+        <h3>🧠 AI ethics, continued</h3>
+        <p>As the model improves, the risk of false confidence increases. We need robust explainability features — not just for regulators, but for the school counselors who act on AI signals. They should be able to see why an alert was generated, not just that it was.</p>
+      </div>
+      <div class="reflection-card fade-in">
+        <h3>📈 Scaling considerations</h3>
+        <p>The current system was designed for schools of 500–2,000 students. District-level deployment (10k+) introduces new challenges: model drift across different student populations, privacy regulation variance by state/country, and the challenge of maintaining the "small school" feel at scale.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 40px; background: var(--surface); border-radius: var(--radius-xl); border: 1px solid var(--border);" class="fade-in">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px;">Final Thought</div>
+      <p style="font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1.4; color: var(--ink); font-style: italic; margin: 0;">
+        "The best AI in education isn't the one that predicts outcomes. It's the one that creates enough space for a student to say something true — and makes sure someone who cares is listening on the other side."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EduPulse AI</div>
+  <p>UX Case Study — Product Design Portfolio</p>
+  <p style="margin-top: 8px;">AI Product Design · System Architecture · Interaction Design · Ethical AI UX</p>
+</footer>
+
+<script>
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Mood chip interaction
+  document.querySelectorAll('.mood-chip').forEach(chip => {
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('sel'));
+      this.classList.add('sel');
+    });
+  });
+</script>
+</body>
+</html>
